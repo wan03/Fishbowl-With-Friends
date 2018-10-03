@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Fish Bowl Game | Home</title>
+    <!-- Material Icon CDN -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Materialize CSS CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Used as an example only to position the footer at the end of the page.
+    You can delete these styles or move it to your custom css file -->
+    
+  </head>
+  <body>
+    <header>
+      <nav class="cyan">
+        <div class="nav-wrapper">
+          <div class="container">
+            <h3 id="game-name">Fish Bowl Game</h3>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container">
+      <img src="assets/images/FishBowl.jpeg" alt="Fish Bowl Game" id="fish-bowl-img" >
+     
+    </main>
+
+    <footer class="page-footer cyan">
+      <div class="container">
+        
+        <div class="row">
+          <div class="col">
+            <p class="grey-text text-lighten-4">Are you ready to play a fun and entertaining?  If you have never played before, click the "How to Play" for the instructions.  Otherwise, click "Start Game" to get the PARTY STARTED!</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12 m8 l6">
+          <h5 id="start-game-btn" class="white-text">Start Game</h5>    
+          </div>
+
+          <div class="col s12 m4 l6">
+            <h5 id="how-to-play-btn" class="white-text">How to Play</h5>
+          </div>
+        </div>
+    
+      </div>
+
+      <div class="footer-copyright">
+        <div class="container">
+          © 2018 Copyright Mon/Wed Project Group 5
+        </div>
+      </div>
+    </footer>
+
+
+
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <!-- Materialize JS CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script>
+      $("document").ready(function(){
+        $(".button-collapse").sideNav();
+      });
+    </script>
+  </body>
+</html>
