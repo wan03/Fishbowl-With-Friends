@@ -23,7 +23,7 @@ var teamsArray = ["team1", "team2", "team3", "team4"],
     selectionsArray = [],
     roundArray =[],
     usedArray = [],
-    currentWord = 0,
+    currentWord = 0
 
 // var quotesArray = [];
 
