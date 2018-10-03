@@ -180,7 +180,7 @@ function randomizeUsedArray () {
 
 // Show words for 30 seconds while allowing them to click correct/incorrect. If correct move to new array and award a point, if incorrect skip but keep in array.
 
-function roundRemainigTime () {
+function roundRemainingTime () {
   time--
   $("#time").text(time);
   noTime();
@@ -213,11 +213,11 @@ $("#correct").on("click", function () {
     usedWords();
     nextWord();
   } if (currentTeam == 3) {
-    correctT1++
+    correctT3++
     usedWords();
     nextWord();
   } if (currentTeam == 4) {
-    correctT1++
+    correctT4++
     usedWords();
     nextWord();
   }  
