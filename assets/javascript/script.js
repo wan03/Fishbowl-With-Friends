@@ -18,7 +18,7 @@ var teamsArray = ["team1", "team2", "team3", "team4"],
     correctT2 = 0,
     correctT3 = 0,
     correctT4 = 0,
-    rounds = 1,
+    rounds = 3,
     time = 30,
     selectionsArray = [],
     roundArray =[],
@@ -100,8 +100,8 @@ function roundRemainigTime () {
 
 function noTime () {
   if (time == 0) {
-  rounds++
-  roundResults();
+  rounds--
+  playerResults();
   };
 };
 
@@ -140,10 +140,10 @@ $("#incorrect").on("click", function () {
 
 
 
-// At the end of 30 seconds show results from the round and wait for click to pass to next person. Make sure it randomizes at this stage.
+// At the end of 30 seconds show results from the player and wait for click to pass to next person. Make sure it randomizes at this stage.
 
 //Still have to do all the show/hide stuff
-function roundResults() {
+function playerResults() {
 $("#results").text("You got " + correctT + currentTeam + "points!")
 currentTeam++
 $("#pass-device").text("Please pass the phone to team " + currentTeam + " and click the button below to continue");
@@ -157,8 +157,28 @@ $("#next-team").on("click", function () {
 
 // Repeat until all words are done, at that point show final round review and start a new round with all the words again
 
+function roundResults() {
+  $("#results").text(
+    "The results are: " +
+    "Team 1: " +
+    correctT1 +
+    "Team 2: " +
+    correctT2 +
+    "Team 3: " +
+    correctT3 +
+    "Team 4: " +
+    correctT4
+  );
+  currentTeam++
+  $("#pass-device").text("Please pass the phone to team " + currentTeam + " and click the button below to continue");
+  }
+  
+  $("#next-team").on("click", function () {  
+    nextWord();
+  });
+
 function nextRound () {
-  round++
+  round--
   randomizeUsedArray();
   nextWord();
 } 
@@ -167,9 +187,40 @@ $("#next-round").on("click", function () {
   nextRound();
 });
 
+function emptyArray () {
+  if (roundArray.lenght == 0) {
+    nextRound();
+  }
+}
+
 // Do rounds until counter is 0 then move on to the final results page
 
+function gameEnd () {
+  if (round == 0) {
+    $("#results").text(
+      "The results are: " +
+      "Team 1: " +
+      correctT1 +
+      "Team 2: " +
+      correctT2 +
+      "Team 3: " +
+      correctT3 +
+      "Team 4: " +
+      correctT4
+    )
+  }
+};
 
+// If the click on a button they can go to the setup page to restart the game. Maybe later make it so that they can just reset the game
+
+function reset () {
+  //Go back to set up page
+
+};
+
+$("#restart").on("click", function (){
+  reset();
+});
 
 
 
