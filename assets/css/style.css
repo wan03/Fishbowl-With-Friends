@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
   display: flex;
   min-height: 100vh;
@@ -16,12 +17,30 @@ main {
   padding: 5px;
 }
  /* ******** MEDIA QUERIES ******** */
+=======
+* {
+
+}
+
+body {
+  
+}
+
+.container {
+  
+}
+
+
+
+/* ******** MEDIA QUERIES ******** */
+>>>>>>> 370eef6f091b33f59d74da03333ba11136d8cb7a
 @media screen and (max-width: 980px) {
   .container {
     max-width: 980px;
   }
 }
 
+<<<<<<< HEAD
 
  @media screen and (max-width: 768px) {
   .container {
@@ -41,10 +60,25 @@ main {
     width: 50%;
   }
    nav {
+=======
+@media screen and (max-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+
+  nav {
+>>>>>>> 370eef6f091b33f59d74da03333ba11136d8cb7a
     float: left; 
   }
 }
 
+<<<<<<< HEAD
  @media screen and (max-width: 320px) {
   .container {
     max-width: 320px;
@@ -53,3 +87,14 @@ main {
     float: left; 
   }
 } 
+=======
+@media screen and (max-width: 320px) {
+  .container {
+    max-width: 320px;
+  }
+
+  nav {
+    float: left; 
+  }
+}
+>>>>>>> 370eef6f091b33f59d74da03333ba11136d8cb7a
