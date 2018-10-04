@@ -22,15 +22,17 @@ $(document).ready(function () {
 
 
 // Initialize Firebase
-var config = {
-  apiKey: "AIzaSyAWN9UIOd5JAV1x4r8cPgBYsYQcL4sXEXA",
-  authDomain: "project-1-445e8.firebaseapp.com",
-  databaseURL: "https://project-1-445e8.firebaseio.com",
-  projectId: "project-1-445e8",
-  storageBucket: "",
-  messagingSenderId: "1029201455873"
-};
-firebase.initializeApp(config);
+
+// var config = {
+//   apiKey: "AIzaSyAWN9UIOd5JAV1x4r8cPgBYsYQcL4sXEXA",
+//   authDomain: "project-1-445e8.firebaseapp.com",
+//   databaseURL: "https://project-1-445e8.firebaseio.com",
+//   projectId: "project-1-445e8",
+//   storageBucket: "",
+//   messagingSenderId: "1029201455873"
+// };
+// firebase.initializeApp(config);
+
 // ********** GLOBAL DECLARATIONS **********
 // Variables related to the scripting logic
 var teamsArray = ["team1", "team2", "team3", "team4"],
@@ -44,7 +46,8 @@ var teamsArray = ["team1", "team2", "team3", "team4"],
     selectionsArray = [],
     roundArray =[],
     usedArray = [],
-    currentWord = 0
+    currentWord = 0,
+    playerInterval
     // var quotesArray = [];
 
 //Ed's variables 
@@ -97,14 +100,14 @@ $(document).on('touchstart click', '#btnInstructions', function () {
 });
 
 // btnBegin
-$(document).on('touchstart click', '#btnBegin', function () {
-  currentWindow = "InputInfo";
-  getHomeDiv.style.display = "none";
-  getInstructionsDiv.style.display = "none";
-  getInputInfoDiv.style.display = "block";
+// $(document).on('touchstart click', '#btnBegin', function () {
+//   currentWindow = "InputInfo";
+//   getHomeDiv.style.display = "none";
+//   getInstructionsDiv.style.display = "none";
+//   getInputInfoDiv.style.display = "block";
   // TODO Ed needs to add additional windows that need to be closed based on what Jonatan produces.
   // TODO Jonatan inserts his game logic beginning here. Specifically as it relates to inputted info.
-});
+// });
 
 // TODO We can use the commented-out section below as a template for additional buttons that Jonatan's logic requires. I'm thinking of his need to get beyond the InputInfo page and when using the additional gameplay pages.
 // btn_
@@ -116,13 +119,13 @@ $(document).on('touchstart click', '#btnBegin', function () {
 //   // TODO Ed needs to add additional windows that need to be closed based on what Jonatan produces.
 // });
 
-}); // end of $(document).ready(function()
+
 // END OF FILE
 
 
 // Retrieve words/quotes from API and place into an array
 
-$("#play").on("click", function() {
+$.when($("#btnBegin").on("click", function() {
   // var typeVerb = "verbs"
   // var typeAdjective = "adjecs"
   // var typeNouns = "nouns"
@@ -130,30 +133,36 @@ $("#play").on("click", function() {
   // var queryURL = "https://nlp.fi.muni.cz/projekty/random_word/run.cgi?language_selection=en&word_selection=" +
   // typeVerb + "&model_selection=norm&length_selection=&probability_selection=true";
 
-  var queryURLwords = "https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&excludePartOfSpeech=affix%2C%20suffix%2C%20preposition%2C%20definite-article%2C%20pronoun%2C%20interjection%2C%20abbreviation%2C%20article%2C%20conjunction%2C%20definite-article&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&limit=10&api_key=YOURAPIKEY";
+  // var queryURLwords = "https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&excludePartOfSpeech=affix%2C%20suffix%2C%20preposition%2C%20definite-article%2C%20pronoun%2C%20interjection%2C%20abbreviation%2C%20article%2C%20conjunction%2C%20definite-article&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&limit=10&api_key=YOURAPIKEY";
 
   var queryURLquotes = "https://andruxnet-random-famous-quotes.p.mashape.com/?cat=famous&count=3"
 
-  $.ajax({
-    url: queryURLwords,
-    method: "GET"
-  }).then(function(response) {
-    console.log(response)
-    for (let i = 0; i < response.length; i++) {
-      selectionsArray.push(response[i].word)
-    }
-  });
+  // $.ajax({
+  //   url: queryURLwords,
+  //   method: "GET"
+  // }).then(function(response) {
+  //   console.log(response)
+  //   for (let i = 0; i < response.length; i++) {
+  //     selectionsArray.push(response[i].word)
+  //   }
+  // });
+
   $.ajax({
     url: queryURLquotes,
-    method: "GET"
+    method: "GET",
+    headers: {
+      "X-Mashape-Key": "FBgZNEfDDwmshlJZlW1jnhav9Mjmp1lh6Xhjsn23J0Jct49goC",
+      "Accept": "application/json",
+    }
   }).then(function(response) {
     console.log(response)
     for (let i = 0; i < response.length; i++) {
       selectionsArray.push(response[i].quote)
+      console.log(response[i].quote)
     }
   });
   //Not sure if this will fire when the click event is fired or if it will get fired once everything inside the click even is done. 
-}).then(randomizeSelectionArray());
+})).then(randomizeSelectionArray());
 
 
 // Take words from array and randomize.
@@ -162,16 +171,17 @@ for (let i = 0; i < selectionsArray.length; i++){
   console.log("randomize has fired")
   let j = Math.floor(Math.random()*(selectionsArray.length-1+1)+1);
   roundArray.push(selectionsArray[j]);
+  console.log(roundArray)
 }
 };
 
-function randomizeUsedArray () {
-  for (let i = 0; i < usedArray.length; i++){
-    console.log("randomize has fired")
-    let j = Math.floor(Math.random()*(usedArray.length-1+1)+1);
-    roundArray.push(usedArray[j]);
-  }
-  };
+// function randomizeUsedArray () {
+//   for (let i = 0; i < usedArray.length; i++){
+//     console.log("randomize has fired")
+//     let j = Math.floor(Math.random()*(usedArray.length-1+1)+1);
+//     roundArray.push(usedArray[j]);
+//   }
+//   };
 
 
 // Retrieve teams from array
@@ -179,8 +189,13 @@ function randomizeUsedArray () {
 
 
 // Show words for 30 seconds while allowing them to click correct/incorrect. If correct move to new array and award a point, if incorrect skip but keep in array.
+function playerRun () {
+  clearInterval(playerInterval);
+  playerInterval = setInterval(playerRemainingTime, 1000);
+  
+};
 
-function roundRemainingTime () {
+function playerRemainingTime () {
   time--
   $("#time").text(time);
   noTime();
@@ -199,7 +214,7 @@ function nextWord () {
 }
 
 function usedWords () {
-usedWords.push(roundArray[currentWord]);
+selectionsArray.push(roundArray[currentWord]);
 }
 
 $("#correct").on("click", function () {
@@ -267,7 +282,8 @@ function roundResults() {
 
 function nextRound () {
   round--
-  randomizeUsedArray();
+  currentWord = 0;
+  randomizeSelectionArray();
   nextWord();
 } 
 
@@ -310,3 +326,4 @@ $("#restart").on("click", function (){
   reset();
 });
 
+}); // end of $(document).ready(function()
