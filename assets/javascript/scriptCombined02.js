@@ -1,8 +1,8 @@
 // BEGINNING OF SCRIPT.JS
-//* VERSIONS:
-//* 00 Initial script.js combined (unformatted)
-//* 01 Rearranging content into a top-down organizational hierarchy
-//* 
+// * VERSIONS:
+// * 00 Initial script.js combined (unformatted)
+// * 01 Rearranging content into a top-down organizational hierarchy
+// * 02 Adding console.log validation and fixing minor errors with commenting to explain
 
 $(document).ready(function () {
 
@@ -16,9 +16,14 @@ $(document).ready(function () {
     messagingSenderId: "1029201455873"
   };
   firebase.initializeApp(config);
+
   // ********** GLOBAL DECLARATIONS **********
+
   // Variables related to the scripting logic
-  var teamsArray = ["team1", "team2", "team3", "team4"],
+
+  // ! Jonatan: Ed corrected the formatting on this array
+  var teamsArray = [
+    ["team1", "team2", "team3", "team4"],
     currentTeam = 1,
     correctT1 = 0,
     correctT2 = 0,
@@ -30,11 +35,12 @@ $(document).ready(function () {
     roundArray = [],
     usedArray = [],
     currentWord = 0
-  // var quotesArray = [];
+  ]; // ! Teams and Rounds are hardcoded for now
+  // var quotesArray = []; // ! Used once the second API is functional
 
-  // Ed's variables 
+  // Navigational variables 
   var currentWindow;
-  var previousWindow; // ? Delete unless used later
+  var previousWindow; // ! Delete unless used later
   var initialClickEvent = true;
   var getHomeDiv = document.getElementById("divHome");
   var getInstructionsDiv = document.getElementById("divInstructions");
@@ -49,80 +55,102 @@ $(document).ready(function () {
   // Take words from array and randomize.
   function randomizeSelectionArray() {
     for (let i = 0; i < selectionsArray.length; i++) {
-      console.log("randomize has fired")
+      console.log("randomizeSelectionArray has fired");
+      // ! Ed is not sure about the following...
       let j = Math.floor(Math.random() * (selectionsArray.length - 1 + 1) + 1);
       roundArray.push(selectionsArray[j]);
     }
   };
 
   function randomizeUsedArray() {
+    console.log("randomizeUsedArray has fired");
     for (let i = 0; i < usedArray.length; i++) {
-      console.log("randomize has fired")
-      let j = Math.floor(Math.random() * (usedArray.length - 1 + 1) + 1);
+      let j = Math.floor(Math.random() * (usedArray.length - 1 + 1) + 1); // ! Ed: Not sure about this
       roundArray.push(usedArray[j]);
     }
   };
 
   // Retrieve teams from array
+  // ! Ed: Believe that this is an add-on when we allow for inputting the # of teams
 
-  // Show words for 30 seconds while allowing them to click correct/incorrect. If correct move to new array and award a point, if incorrect skip but keep in array.
-
+  // Show words for 30 seconds while allowing them to click correct/incorrect. 
+  // If correct move to new array and award a point.
+  // If incorrect skip but keep in array.
   function roundRemainingTime() {
-    time--
+    console.log("roundRemainingTime has fired");
+    console.log("time--");
+    time--;
     $("#time").text(time);
+    console.log("Call noTime from roundRemainingTime");
     noTime();
   }
 
   function noTime() {
+    console.log("noTime has fired");
     if (time == 0) {
-      rounds--
+      console.log("time == 0");
+      console.log("rounds--");
+      rounds--;
+      console.log("Call playerResults from noTime");
       playerResults();
     };
   };
 
   function nextWord() {
-    currentWord++
+    console.log("nextWord has fired");
+    console.log("currentWord++");
+    currentWord++;
     $("#word").text(roundArray[currentWord]);
   }
 
   function usedWords() {
+    console.log("usedWords has fired");
     usedWords.push(roundArray[currentWord]);
   }
 
   // At the end of 30 seconds show results from the player and wait for click to pass to next person. Make sure it randomizes at this stage.
 
-  //Still have to do all the show/hide stuff
+  // Still have to do all the show/hide stuff
   function playerResults() {
-    $("#results").text("You got " + correctT + currentTeam + "points!")
+    console.log("playerResults has fired");
+    $("#results").text("You got " + correctT + currentTeam + "points!");
     currentTeam++
     $("#pass-device").text("Please pass the phone to team " + currentTeam + " and click the button below to continue");
   }
 
   // Repeat until all words are done, at that point show final round review and start a new round with all the words again
-  function roundResults() {
+  function nextRound() {
+    console.log("nextRound has fired");
     $("#results").text(
       "The results are: " +
       "Team 1: " +
       correctT1 +
-      "Team 2: " +
+      " Team 2: " +
       correctT2 +
-      "Team 3: " +
+      " Team 3: " +
       correctT3 +
-      "Team 4: " +
+      " Team 4: " +
       correctT4
     );
+    console.log("currentTeam++");
     currentTeam++
     $("#pass-device").text("Please pass the phone to team " + currentTeam + " and click the button below to continue");
   }
 
   function nextRound() {
+    console.log("nextRound has fired");
+    console.log("round--");
     round--
+    console.log("Call randomizeUsedArray from nextRound");
     randomizeUsedArray();
+    console.log("Call nextWord from nextRound");
     nextWord();
   }
 
   function emptyArray() {
+    console.log("emptyArray has fired");
     if (roundArray.lenght == 0) {
+      console.log("Call nextRound from emptyArray");
       nextRound();
     }
   }
@@ -130,38 +158,40 @@ $(document).ready(function () {
   // Do rounds until counter is 0 then move on to the final results page
   function gameEnd() {
     if (round == 0) {
+      console.log("round==0");
       $("#results").text(
         "The results are: " +
-        "Team 1: " +
+        " Team 1: " +
         correctT1 +
-        "Team 2: " +
+        " Team 2: " +
         correctT2 +
-        "Team 3: " +
+        " Team 3: " +
         correctT3 +
-        "Team 4: " +
+        " Team 4: " +
         correctT4
       )
     }
   }
 
-    // If the click on a button they can go to the setup page to restart the game. Maybe later make it so that they can just reset the game
+  // If the click on a button they can go to the setup page to restart the game. Maybe later make it so that they can just reset the game
   function reset() {
     //Go back to set up page
+    // ! TO BE COMPLETED
   }
 
   // ******** GLOBAL CLICK EVENTS ********
   // Retrieve words/quotes from API and place into an array
-  $("#play").on("click", function () {
-    // var typeVerb = "verbs"
-    // var typeAdjective = "adjecs"
-    // var typeNouns = "nouns"
+  $("#play").on("touchstart click", function () {
+    // var typeVerb = "verbs";
+    // var typeAdjective = "adjecs";
+    // var typeNouns = "nouns";
 
     // var queryURL = "https://nlp.fi.muni.cz/projekty/random_word/run.cgi?language_selection=en&word_selection=" +
     // typeVerb + "&model_selection=norm&length_selection=&probability_selection=true";
 
     var queryURLwords = "https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&excludePartOfSpeech=affix%2C%20suffix%2C%20preposition%2C%20definite-article%2C%20pronoun%2C%20interjection%2C%20abbreviation%2C%20article%2C%20conjunction%2C%20definite-article&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&limit=10&api_key=YOURAPIKEY";
 
-    var queryURLquotes = "https://andruxnet-random-famous-quotes.p.mashape.com/?cat=famous&count=3"
+    var queryURLquotes = "https://andruxnet-random-famous-quotes.p.mashape.com/?cat=famous&count=3";
 
     $.ajax({
       url: queryURLwords,
@@ -184,44 +214,62 @@ $(document).ready(function () {
     //Not sure if this will fire when the click event is fired or if it will get fired once everything inside the click even is done. 
   }).then(randomizeSelectionArray());
 
-  $("#correct").on("click", function () {
+  $("#correct").on("touchstart click", function () {
     //Here would love to figure out how to dinamically create a variable using currentteam instead of this nested if statements.
     if (currentTeam == 1) {
+      console.log("correctT1++");
       correctT1++
+      console.log("Call usedWords");
       usedWords();
+      console.log("Call nextWord");
       nextWord();
     } if (currentTeam == 2) {
+      console.log("correctT2++");
       correctT2++
+      console.log("Call usedWords");
       usedWords();
+      console.log("Call nextWord");
       nextWord();
     } if (currentTeam == 3) {
+      console.log("correctT3++");
       correctT3++
+      console.log("Call usedWords");
       usedWords();
+      console.log("Call nextWord");
       nextWord();
     } if (currentTeam == 4) {
+      console.log("correctT4++");
       correctT4++
+      console.log("Call usedWords");
       usedWords();
+      console.log("Call nextWord");
       nextWord();
     }
   });
 
-  $("#incorrect").on("click", function () {
+  $("#incorrect").on("touchstart click", function () {
+    console.log("#incorrect calls nextWord");
     nextWord();
   });
 
-  $("#next-team").on("click", function () {
+  $("#next-team").on("touchstart click", function () {
+    console.log("#next-team calls nextWord");
     nextWord();
   });
 
-  $("#next-team").on("click", function () {
-    nextWord();
-  });
+  // ! Ed commented this out as a duplicate
+  // $("#next-team").on("click", function () {
+  //   console.log("#next-team calls nextWord");
+  //   nextWord();
+  // });
 
-  $("#next-round").on("click", function () {
+  $("#next-round").on("touchstart click", function () {
+    console.log("#next-round calls nextRound");
     nextRound();
   });
 
-  $("#restart").on("click", function () {
+  $("#restart").on("touchstart click", function () {
+    console.log("#restart calls reset");
     reset();
   });
 
