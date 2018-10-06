@@ -129,20 +129,26 @@ $.when($("#btnBegin").on("click", function() {
   // var typeVerb = "verbs"
   // var typeAdjective = "adjecs"
   // var typeNouns = "nouns"
+
+  // var queryURLwords = 
+  // "https://cors-anywhere.herokuapp.com/" + "https://opinionated-quotes-api.gigalixirapp.com//v1/quotes?rand=t&n=1&author=pearce&tags=future,transhumanism"
   
   // var queryURL = "https://nlp.fi.muni.cz/projekty/random_word/run.cgi?language_selection=en&word_selection=" +
   // typeVerb + "&model_selection=norm&length_selection=&probability_selection=true";
 
   // var queryURLwords = "https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&excludePartOfSpeech=affix%2C%20suffix%2C%20preposition%2C%20definite-article%2C%20pronoun%2C%20interjection%2C%20abbreviation%2C%20article%2C%20conjunction%2C%20definite-article&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&limit=10&api_key=YOURAPIKEY";
 
-  var queryURLquotes = "https://andruxnet-random-famous-quotes.p.mashape.com/?cat=famous&count=3"
+  var queryURLquotes = "https://andruxnet-random-famous-quotes.p.mashape.com/?cat=famous&count=15"
 
   // $.ajax({
   //   url: queryURLwords,
   //   method: "GET"
   // }).then(function(response) {
   //   console.log(response)
-  //   for (let i = 0; i < response.length; i++) {
+  //   var quotes = response.quote
+  //   var splitQuote = quotes.replace(/(\b(\w{1,3})\b(\W|$))/g,'').split(/\s+/);
+  //   console.log(splitQuote)    
+  //   for (let i = 0; i < splitQuote.length; i++) {
   //     selectionsArray.push(response[i].word)
   //   }
   // });
