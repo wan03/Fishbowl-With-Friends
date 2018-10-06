@@ -7,22 +7,22 @@
 $(document).ready(function () {
 
   // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAWN9UIOd5JAV1x4r8cPgBYsYQcL4sXEXA",
-    authDomain: "project-1-445e8.firebaseapp.com",
-    databaseURL: "https://project-1-445e8.firebaseio.com",
-    projectId: "project-1-445e8",
-    storageBucket: "",
-    messagingSenderId: "1029201455873"
-  };
-  firebase.initializeApp(config);
+  // var config = {
+  //   apiKey: "AIzaSyAWN9UIOd5JAV1x4r8cPgBYsYQcL4sXEXA",
+  //   authDomain: "project-1-445e8.firebaseapp.com",
+  //   databaseURL: "https://project-1-445e8.firebaseio.com",
+  //   projectId: "project-1-445e8",
+  //   storageBucket: "",
+  //   messagingSenderId: "1029201455873"
+  // };
+  // firebase.initializeApp(config);
 
   // ********** GLOBAL DECLARATIONS **********
 
   // Variables related to the scripting logic
 
   // ! Jonatan: Ed corrected the formatting on this array
-  var teamsArray = [
+  var teamsArray = 
     ["team1", "team2", "team3", "team4"],
     currentTeam = 1,
     correctT1 = 0,
@@ -34,8 +34,7 @@ $(document).ready(function () {
     selectionsArray = [],
     roundArray = [],
     usedArray = [],
-    currentWord = 0
-  ]; // ! Teams and Rounds are hardcoded for now
+    currentWord = 0; // ! Teams and Rounds are hardcoded for now
   // var quotesArray = []; // TODO To be used once the second API is functional
 
   // Navigational variables 
@@ -59,16 +58,19 @@ $(document).ready(function () {
       // ! Ed is not sure about the following...
       let j = Math.floor(Math.random() * (selectionsArray.length - 1 + 1) + 1);
       roundArray.push(selectionsArray[j]);
+      console.log(roundArray)
     }
   };
 
-  function randomizeUsedArray() {
-    console.log("randomizeUsedArray has fired");
-    for (let i = 0; i < usedArray.length; i++) {
-      let j = Math.floor(Math.random() * (usedArray.length - 1 + 1) + 1); // ! Ed: Not sure about this
-      roundArray.push(usedArray[j]);
-    }
-  };
+  // Don't need the randomizeUsedArray function for now.
+
+  // function randomizeUsedArray() {
+  //   console.log("randomizeUsedArray has fired");
+  //   for (let i = 0; i < usedArray.length; i++) {
+  //     let j = Math.floor(Math.random() * (usedArray.length - 1 + 1) + 1); // ! Ed: Not sure about this
+  //     roundArray.push(usedArray[j]);
+  //   }
+  // };
 
   // Retrieve teams from array
   // ! Ed: Believe that this is an add-on when we later allow for inputting the # of teams
@@ -76,7 +78,14 @@ $(document).ready(function () {
   // Show words for 30 seconds while allowing them to click correct/incorrect. 
   // If correct move to new array and award a point.
   // If incorrect skip but keep in array.
-  function roundRemainingTime() {
+
+  function playerRun () {
+    clearInterval(playerInterval);
+    playerInterval = setInterval(playerRemainingTime, 1000);
+    
+  };
+
+  function playerRemainingTime() {
     // ! Ed: Currently this function is not being referenced in the code
     console.log("roundRemainingTime has fired");
     console.log("time--");
@@ -106,7 +115,7 @@ $(document).ready(function () {
 
   function usedWords() {
     console.log("usedWords has fired");
-    usedWords.push(roundArray[currentWord]);
+    selectionsArray.push(roundArray[currentWord]);
   }
 
   // At the end of 30 seconds show results from the player and wait for click to pass to next person. Make sure it randomizes at this stage.
@@ -120,7 +129,7 @@ $(document).ready(function () {
   }
 
   // Repeat until all words are done, at that point show final round review and start a new round with all the words again
-  function nextRound() {
+  function roundResults() {
     console.log("nextRound has fired");
     $("#results").text(
       "The results are: " +
@@ -142,8 +151,9 @@ $(document).ready(function () {
     console.log("nextRound has fired");
     console.log("round--");
     round--;
+    currentWord = 0;
     console.log("Call randomizeUsedArray from nextRound");
-    randomizeUsedArray();
+    randomizeSelectionArray();
     console.log("Call nextWord from nextRound");
     nextWord();
   }
@@ -152,7 +162,8 @@ $(document).ready(function () {
     console.log("emptyArray has fired");
     if (roundArray.lenght == 0) {
       console.log("Call nextRound from emptyArray");
-      nextRound();
+      roundResults();
+      nextRound(); // ! This should happen on click after the results have been shown.
     }
   }
 
@@ -334,6 +345,13 @@ $(document).ready(function () {
   //   getInputInfoDiv.style.display = "";
   //   // TODO Ed needs to add additional windows that need to be closed based on what Jonatan produces.
   // });
+
+  function game () {
+    nextWord();
+    playerRun();
+    emptyArray();
+    gameEnd();
+  }
 
 }); // end of $(document).ready(function()
 // END OF FILE
