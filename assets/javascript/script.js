@@ -1,5 +1,7 @@
 // BEGINNING OF SCRIPT.JS
 $(document).ready(function () {
+  $('.modal').modal();
+});
 
 // TODO ********** JEFFREY **********
 //Please give the following buttons the following IDs:

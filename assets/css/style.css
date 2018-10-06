@@ -1,15 +1,23 @@
-<<<<<<< HEAD
 body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
   }
-main {
+
+#sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+
+/* main {
   flex: 1 0 auto;
-}
+} */
+
  #game-name {
   align-content: center;
  }
+ 
  #fish-bowl-img {
   width: 100%;
   margin: auto;
@@ -17,30 +25,12 @@ main {
   padding: 5px;
 }
  /* ******** MEDIA QUERIES ******** */
-=======
-* {
-
-}
-
-body {
-  
-}
-
-.container {
-  
-}
-
-
-
-/* ******** MEDIA QUERIES ******** */
->>>>>>> 370eef6f091b33f59d74da03333ba11136d8cb7a
 @media screen and (max-width: 980px) {
   .container {
     max-width: 980px;
   }
 }
 
-<<<<<<< HEAD
 
  @media screen and (max-width: 768px) {
   .container {
@@ -60,20 +50,6 @@ body {
     width: 50%;
   }
    nav {
-=======
-@media screen and (max-width: 768px) {
-  .container {
-    max-width: 768px;
-  }
-}
-
-@media screen and (max-width: 640px) {
-  .container {
-    max-width: 640px;
-  }
-
-  nav {
->>>>>>> 370eef6f091b33f59d74da03333ba11136d8cb7a
     float: left; 
   }
 }
