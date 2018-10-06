@@ -202,8 +202,7 @@ function playerRemainingTime () {
 }
 
 function noTime () {
-  if (time == 0) {
-  rounds--
+  if (time == 0) {  
   playerResults();
   };
 };
