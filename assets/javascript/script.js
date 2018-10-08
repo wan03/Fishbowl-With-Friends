@@ -117,6 +117,8 @@ $(document).ready(function () {
     console.log(currentWord);
     console.log(roundArray[currentWord]);
     $("#word-phrase-box").text(roundArray[currentWord]);
+    if (currentWord > roundArray.lenght - 1)
+    currentWord = 0;
   }
 
   function usedWords() {
@@ -129,8 +131,8 @@ $(document).ready(function () {
   // Still have to do all the show/hide stuff
   function playerResults() {
     console.log("playerResults has fired");
-    // ! This still needs some work as it is showing undefined. How do we dinamically show the team points? 
 
+    // ! This still needs some work as it is showing undefined. How do we dinamically show the team points? 
     $("#divResults").text("You got " + correctAnswers[currentTeam]  + " points!");
     currentTeam++;
     time = 30;
@@ -253,6 +255,7 @@ $(document).ready(function () {
     if (currentTeam == 1) {
       console.log("correctT1++");
       correctT1++
+      console.log(correctT1);
       console.log("Call usedWords");
       usedWords();
       console.log("Call nextWord");
