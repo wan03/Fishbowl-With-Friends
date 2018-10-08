@@ -163,7 +163,7 @@
           </div>
         </div>
 
-        <p id="messageBox" style="background-color:red; color: white; width: 40%" class="center-align">Validation Message Goes Hear</p>
+        <p id="messageBox" style="background-color:red; color: white; width: 40%" class="center-align">Validation Message Goes Here</p>
 
         <div class="row">
           <div class="col s12">
@@ -247,6 +247,7 @@
       <div class="row center-align">
         <div class="col s12 white-text">
           <h4>Count Down Clock</h4>
+          <h5 id="time"></h5>
         </div>
       </div>
 
@@ -258,10 +259,10 @@
 
       <div class="row center-align">
         <div class="col s6">
-            <button class="btn waves-effect waves-light orange darken-2">Right</button>
+            <button class="btn waves-effect waves-light orange darken-2" id="correct">Right</button>
         </div>
         <div class="col s6">
-            <button class="btn waves-effect waves-light orange darken-2">Wrong</button>
+            <button class="btn waves-effect waves-light orange darken-2" id="incorrect">Wrong</button>
         </div>
       </div>
 
@@ -279,6 +280,7 @@
   <p>Team 1 Results:  0</p>
   <p>Team 2 Results:  1</p>
   <p>Team 3 Results:  2</p>
+  <p id="pass-device"></p>
   
 
 
@@ -286,14 +288,34 @@
     <div class="col s12">
       <p>X Team WINS!!</p>
     </div>
+ <!-- ! Created these buttons for the results that are in between teams to test that the buttons work. Will have to either show/hide these when appropriate or just create two separate result pages -Jonatan -->
+</div>
+<div class="row center-align">
+  <div class="col s6">
+    <button class="btn waves-effect waves-light orange darken-2">Quit</button>
   </div>
+  <div class="col s6">
+    <button class="btn waves-effect waves-light orange darken-2" id="next-team">Next Team</button>
+  </div>
+</div>
+
+  <!-- ! Created these buttons for the results that are in between rounds to test that the buttons work. Will have to either show/hide these when appropriate or just create two separate result pages -Jonatan -->
+  </div>
+  <div class="row center-align">
+    <div class="col s6">
+      <button class="btn waves-effect waves-light orange darken-2">Quit</button>
+    </div>
+    <div class="col s6">
+      <button class="btn waves-effect waves-light orange darken-2" id="next-round">Next Round</button>
+    </div>
+</div>
 
   <div class="row center-align">
       <div class="col s6">
         <button class="btn waves-effect waves-light orange darken-2">Quit</button>
       </div>
       <div class="col s6">
-        <button class="btn waves-effect waves-light orange darken-2">Play Again</button>
+        <button class="btn waves-effect waves-light orange darken-2" id="restart">Play Again</button>
       </div>
   </div>
 
