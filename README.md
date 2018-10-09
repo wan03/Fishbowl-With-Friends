@@ -1,5 +1,5 @@
 # Project Title
-Fishbowl (actual name TBD)
+Fishbowl With Friends
 
 # Description
 Creating a site that will be mobile first with the intention that friends will be able to pass a phone or tablet between participants who are playing the classic fishbowl game.
