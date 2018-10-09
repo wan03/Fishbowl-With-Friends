@@ -34,19 +34,12 @@ $(document).ready(function () {
   // var quotesArray = []; // TODO To be used once the second API is functional
 
   // Navigational variables 
-  var currentWindow;
-  var previousWindow;
   var initialClickEvent = true;
   var getHomeDiv = document.getElementById("divHome");
-  // var getInstructionsDiv = document.getElementById("divInstructions");
   var getInputInfoDiv = document.getElementById("divInputInfo");
   var getGamePageDiv = document.getElementById("divGamePage");
   var getResultsDiv = document.getElementById("divResults");
-  var getBtnHome = document.getElementById("btnHome");
-  var getBtnInstructions = document.getElementById("btnInstructions");
-  var getBtnBegin = document.getElementById("btnBegin");
-  var currentWindow;
-  var previousWindow;
+
 
   // ******** GLOBAL FUNCTIONS ********
   // Take words from array and randomize.
@@ -134,7 +127,7 @@ $(document).ready(function () {
   }
 
   function roundResults() {
-    // ! fires when roundArray is empty
+    // fires when roundArray is empty
     // TODO Should redo this a for loop based on the length of the teams array
     console.log(">>> nextRound has fired. Therefore roundArray is empty");
     $("#results").text(
@@ -173,8 +166,8 @@ $(document).ready(function () {
     }
   }
 
-  // Do rounds until counter is 0 then move on to the final results page
   function gameEnd() {
+    // Do rounds until counter is 0 then move on to the final results page
     if (rounds == 0) {
       console.log("round==0");
       $("#results").text(
@@ -209,7 +202,7 @@ $(document).ready(function () {
 
   // ! btnHome
   $(document).on('touchstart click', '#btnHome', function () {
-    initialClickEvent = false;
+    initialClickEvent = true;
     getHomeDiv.style.display = "block";
     getGamePageDiv.style.display = "none";
     getResultsDiv.style.display = "none";
@@ -262,7 +255,7 @@ $(document).ready(function () {
     nextWord();
     playerRun();
   })
-
+  // TODO PROBLEM: Above and Below are duplicates, for the most part
   // ! next-team
   $("#next-team").on("touchstart click", function () {
     console.log("#next-team calls nextWord");
@@ -344,7 +337,6 @@ $(document).ready(function () {
 
   // btnHome
   // $(document).on('touchstart click', '#btnHome', function () {
-  //   currentWindow = "Home";
   //   getHomeDiv.style.display = "block";
   //   getInstructionsDiv.style.display = "none";
   //   getInputInfoDiv.style.display = "none";
@@ -361,7 +353,6 @@ $(document).ready(function () {
   // TODO We can use the commented-out section below as a template for additional buttons that Jonatan's logic requires. I'm thinking of his need to get beyond the InputInfo page and when using the additional gameplay pages.
   // btn_
   // $(document).on('touchstart click', '#btn_', function () {
-  //   currentWindow = get_Div;
   //   getHomeDiv.style.display = "";
   //   getInstructionsDiv.style.display = "";
   //   getInputInfoDiv.style.display = "";
