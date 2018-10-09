@@ -191,6 +191,14 @@ $(document).ready(function () {
     }
   }
 
+  function game(event) {
+    event.preventDefault();
+    nextWord();
+    playerRun();
+    emptyArray();
+    gameEnd();
+  }
+
   // If the click on a button they can go to the setup page to restart the game. Maybe later make it so that they can just reset the game
   function reset() {
     //Go back to set up page
@@ -198,15 +206,28 @@ $(document).ready(function () {
   }
 
   // ******** GLOBAL CLICK EVENTS ********
-  // Retrieve words/quotes from API and place into an array
-  $("#btnBegin").on("touchstart click", function () {
-    // ! need to change this ID to a better one.
 
+  // ! btnHome
+  $(document).on('touchstart click', '#btnHome', function () {
+    initialClickEvent = false;
+    getHomeDiv.style.display = "block";
+    getGamePageDiv.style.display = "none";
+    getResultsDiv.style.display = "none";
+    getInputInfoDiv.style.display = "none";
+  });
+
+  // ! btnBegin
+  $(document).on('touchstart click', '#btnBegin', function () {
+    // Retrieve words/quotes from API and place into an array
+    initialClickEvent = false;
+    getHomeDiv.style.display = "none";
+    getGamePageDiv.style.display = "none";
+    getResultsDiv.style.display = "none";
+    getInputInfoDiv.style.display = "block";
+    // ! need to change this ID to a better one.
     var queryURL =
       "https://cors-anywhere.herokuapp.com/" + "https://opinionated-quotes-api.gigalixirapp.com//v1/quotes?rand=t&n=1&author=pearce&tags=future,transhumanism"
-
     var queryURLquotes = "https://andruxnet-random-famous-quotes.p.mashape.com/?cat=famous&count=10";
-
     $.ajax({
       url: queryURL,
       method: "GET"
@@ -229,7 +250,6 @@ $(document).ready(function () {
         console.log(response)
         for (let i = 0; i < response.length; i++) {
           selectionsArray.push(response[i].quote)
-
         }
         roundArray = randomizeSelectionArray(selectionsArray);
         console.log("it works" + roundArray)
@@ -237,10 +257,19 @@ $(document).ready(function () {
     });
   });
 
+  // ! next-team
   $("#next-team").on("touchstart click", function () {
     nextWord();
     playerRun();
   })
+
+  // ! next-team
+  $("#next-team").on("touchstart click", function () {
+    console.log("#next-team calls nextWord");
+    nextWord();
+  });
+
+  // ! correct
   $("#correct").on("touchstart click", function () {
     // TODO Add hide/show
     //Here would love to figure out how to dinamically create a variable using currentteam instead of this nested if statements.
@@ -276,23 +305,21 @@ $(document).ready(function () {
     }
   });
 
+  // ! incorrect
   $("#incorrect").on("touchstart click", function () {
     // TODO Add hide/show
     console.log("#incorrect calls nextWord");
     nextWord();
   });
 
-  $("#next-team").on("touchstart click", function () {
-    console.log("#next-team calls nextWord");
-    nextWord();
-  });
-
+  // ! next-round
   $("#next-round").on("touchstart click", function () {
     // TODO Add hide/show
     console.log("#next-round calls nextRound");
     nextRound();
   });
 
+  // ! restart
   $("#restart").on("touchstart click", function () {
     // TODO Add hide/show
     console.log("#restart calls reset");
@@ -311,7 +338,7 @@ $(document).ready(function () {
     getGamePageDiv.style.display = "none";
     getResultsDiv.style.display = "none";
     getInputInfoDiv.style.display = "none";
-  } 
+  }
 
   // }); // End of $(document).on('touchstart click', document, function ()
 
@@ -323,23 +350,13 @@ $(document).ready(function () {
   //   getInputInfoDiv.style.display = "none";
   // });
 
-  // btnInstructions
-  // $(document).on('touchstart click', '#btnInstructions', function () {
-  //   currentWindow = "Instructions";
-  //   getHomeDiv.style.display = "none";
-  //   getInstructionsDiv.style.display = "block";
-  //   getInputInfoDiv.style.display = "none";
-  // });
 
-  // ! btnBegin
-  $(document).on('touchstart click', '#btnBegin', function () {
-    initialClickEvent = false;
-    // currentWindow = "InputInfo";
-    getHomeDiv.style.display = "none";
-    getGamePageDiv.style.display = "none";
-    getResultsDiv.style.display = "none";
-    getInputInfoDiv.style.display = "block";
-  });
+
+
+
+
+
+  $("#play-game-btn").on("touchstart click", game);
 
   // TODO We can use the commented-out section below as a template for additional buttons that Jonatan's logic requires. I'm thinking of his need to get beyond the InputInfo page and when using the additional gameplay pages.
   // btn_
@@ -349,16 +366,6 @@ $(document).ready(function () {
   //   getInstructionsDiv.style.display = "";
   //   getInputInfoDiv.style.display = "";
   // });
-
-  function game(event) {
-    event.preventDefault();
-    nextWord();
-    playerRun();
-    emptyArray();
-    gameEnd();
-  }
-
-  $("#play-game-btn").on("touchstart click", game);
 
 }); // end of $(document).ready(function()
 // END OF FILE
