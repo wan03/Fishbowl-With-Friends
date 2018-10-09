@@ -22,7 +22,7 @@ $(document).ready(function () {
   // Variables related to the scripting logic
 
   // ! Jonatan: Ed corrected the formatting on this array
-  var teamsArray = 
+  var teamsArray =
     ["team1", "team2", "team3", "team4"],
     currentTeam = 1,
     correctT1 = 0,
@@ -56,20 +56,20 @@ $(document).ready(function () {
   // Take words from array and randomize.
 
   function randomizeSelectionArray(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;  
+    var currentIndex = array.length, temporaryValue, randomIndex;
     // While there remain elements to shuffle...
+    console.log(">>> randomizeSelectionArray(array) has fired");
     while (0 !== currentIndex) {
-  
+      console.log("currentIndex = " + currentIndex);
       // Pick a remaining element...
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
-  
+
       // And swap it with the current element.
       temporaryValue = array[currentIndex];
       array[currentIndex] = array[randomIndex];
       array[randomIndex] = temporaryValue;
     }
-  
     return array;
   }
 
@@ -91,48 +91,50 @@ $(document).ready(function () {
   // If correct move to new array and award a point.
   // If incorrect skip but keep in array.
 
-  function playerRun () {
+  function playerRun() {
+    console.log(">>> playerRun() has fired");
     clearInterval(playerInterval);
     playerInterval = setInterval(playerRemainingTime, 1000);
-    
+
   };
 
   function playerRemainingTime() {
     // ! Ed: Currently this function is not being referenced in the code
-    console.log("roundRemainingTime has fired");
+    console.log(">>> roundRemainingTime has fired");
     console.log("time--");
     time--;
     $("#time").text(time);
-    console.log("Call noTime from roundRemainingTime");
+    console.log("Call noTime from roundRemainingTime next");
     noTime();
   }
 
   function noTime() {
-    console.log("noTime has fired");
+    console.log(">>> noTime has fired");
     if (time == 0) {
       console.log("time == 0");
-      console.log("rounds--");
+      console.log("Call clearInterval(playerInterval) from noTime()");
       clearInterval(playerInterval);
+      console.log("rounds--");
       rounds--;
-      console.log("Call playerResults from noTime");
+      console.log("Call playerResults from noTime()");
       playerResults();
     };
   };
 
   function nextWord() {
-    console.log("nextWord has fired");
+    console.log(">>> nextWord() has fired");
     console.log(currentWord);
     console.log(roundArray[currentWord]);
     currentWord++;
-    console.log(currentWord);
+    console.log("currentWord++ results in currentWord=" + currentWord);
     console.log(roundArray[currentWord]);
     $("#word-phrase-box").text(roundArray[currentWord]);
-    if (currentWord > roundArray.lenght - 1)
-    currentWord = 0;
+    if (currentWord > roundArray.length - 1)
+      currentWord = 0;
   }
 
   function usedWords() {
-    console.log("usedWords has fired");
+    console.log(">>> usedWords() has fired");
     selectionsArray.push(roundArray[currentWord]);
   }
 
@@ -140,24 +142,26 @@ $(document).ready(function () {
 
   // Still have to do all the show/hide stuff
   function playerResults() {
-    console.log("playerResults has fired");
+    // ! This fire when countdown == 0
+    console.log(">>> playerResults has fired. Therefore countdown==0.");
 
-    // ! This still needs some work as it is showing undefined. How do we dinamically show the team points? 
-    $("#divResults").text("You got " + correctAnswers[currentTeam]  + " points!");
+    // ! This still needs some work as it is showing undefined. How do we dynamically show the team points? 
+    $("#divResults").text("You got " + correctAnswers[currentTeam] + " points!");
     currentTeam++;
     time = 30;
     $("#pass-device").text("Please pass the phone to  the next team and click the button below to continue");
   }
 
-  $("#next-team").on("click", function () {
+  $("#next-team").on("touchstart click", function () {
     nextWord();
     playerRun();
   })
 
   // Repeat until all words are done, at that point show final round review and start a new round with all the words again
   function roundResults() {
+    // ! fires when roundArray is empty
     // TODO Should redo this a for loop based on the length of the teams array
-    console.log("nextRound has fired");
+    console.log(">>> nextRound has fired. Therefore roundArray is empty");
     $("#results").text(
       "The results are: " +
       "Team 1: " +
@@ -175,19 +179,19 @@ $(document).ready(function () {
   }
 
   function nextRound() {
-    console.log("nextRound has fired");
-    console.log("round--");
+    console.log(">>> nextRound has fired");
+    console.log("round--, therefore Press 'Next Round' Button");
     rounds--;
     currentWord = 0;
-    console.log("Call randomizeUsedArray from nextRound");
-    roundArray = randomizeSelectionArray();
-    console.log("Call nextWord from nextRound");
+    console.log("Call randomizeUsedArray from nextRound()");
+    roundArray = randomizeSelectionArray(selectionsArray);
+    console.log("Call nextWord from nextRound()");
     nextWord();
   }
 
   function emptyArray() {
-    console.log("emptyArray has fired");
-    if (roundArray.lenght == 0) {
+    console.log(">>> emptyArray has fired");
+    if (roundArray.length == 0) {
       console.log("Call nextRound from emptyArray");
       roundResults();
       nextRound(); // ! This should happen on click after the results have been shown.
@@ -215,13 +219,13 @@ $(document).ready(function () {
   // If the click on a button they can go to the setup page to restart the game. Maybe later make it so that they can just reset the game
   function reset() {
     //Go back to set up page
-    // TODO TO BE COMPLETED
+    // TODO TO BE COMPLETED BY ED OR JONATAN
   }
 
   // ******** GLOBAL CLICK EVENTS ********
   // Retrieve words/quotes from API and place into an array
   $("#btnBegin").on("touchstart click", function () {
-    // ! need to change ID to better one.
+    // ! need to change this ID to a better one.
     // var typeVerb = "verbs";
     // var typeAdjective = "adjecs";
     // var typeNouns = "nouns";
@@ -229,41 +233,41 @@ $(document).ready(function () {
     // var queryURL = "https://nlp.fi.muni.cz/projekty/random_word/run.cgi?language_selection=en&word_selection=" +
     // typeVerb + "&model_selection=norm&length_selection=&probability_selection=true";
 
-    var queryURL = 
-    "https://cors-anywhere.herokuapp.com/" + "https://opinionated-quotes-api.gigalixirapp.com//v1/quotes?rand=t&n=1&author=pearce&tags=future,transhumanism"
+    var queryURL =
+      "https://cors-anywhere.herokuapp.com/" + "https://opinionated-quotes-api.gigalixirapp.com//v1/quotes?rand=t&n=1&author=pearce&tags=future,transhumanism"
 
     var queryURLquotes = "https://andruxnet-random-famous-quotes.p.mashape.com/?cat=famous&count=10";
 
     $.ajax({
       url: queryURL,
       method: "GET"
-    }).then(function(response) {
+    }).then(function (response) {
       console.log(response.quotes[0].quote)
       var quotes = response.quotes[0].quote
-      var splitQuote = quotes.replace(/(\b(\w{1,3})\b(\W|$))/g,'').split(/\s+/);
-      console.log(splitQuote)    
+      var splitQuote = quotes.replace(/(\b(\w{1,3})\b(\W|$))/g, '').split(/\s+/);
+      console.log(splitQuote)
       for (let i = 0; i < splitQuote.length; i++) {
         selectionsArray.push(splitQuote[i])
-      }    
-    $.ajax({
-      url: queryURLquotes,
-      method: "GET",
-      headers: {
-        "X-Mashape-Key": "FBgZNEfDDwmshlJZlW1jnhav9Mjmp1lh6Xhjsn23J0Jct49goC",
-        "Accept": "application/json",
       }
-    }).then(function (response) {
-      console.log(response)
-      for (let i = 0; i < response.length; i++) {
-        selectionsArray.push(response[i].quote)
-        
-      }
-      roundArray = randomizeSelectionArray(selectionsArray);
-      console.log("it works" + roundArray)
+      $.ajax({
+        url: queryURLquotes,
+        method: "GET",
+        headers: {
+          "X-Mashape-Key": "FBgZNEfDDwmshlJZlW1jnhav9Mjmp1lh6Xhjsn23J0Jct49goC",
+          "Accept": "application/json",
+        }
+      }).then(function (response) {
+        console.log(response)
+        for (let i = 0; i < response.length; i++) {
+          selectionsArray.push(response[i].quote)
+
+        }
+        roundArray = randomizeSelectionArray(selectionsArray);
+        console.log("it works" + roundArray)
+      });
+      //Not sure if this will fire when the click event is fired or if it will get fired once everything inside the click even is done. 
     });
-    //Not sure if this will fire when the click event is fired or if it will get fired once everything inside the click even is done. 
   });
-});
 
   $("#correct").on("touchstart click", function () {
     // TODO Add hide/show
@@ -310,13 +314,6 @@ $(document).ready(function () {
     console.log("#next-team calls nextWord");
     nextWord();
   });
-
-  // ! Ed commented this out as a duplicate
-  // $("#next-team").on("click", function () {
-  // TODO Add hide/show
-  //   console.log("#next-team calls nextWord");
-  //   nextWord();
-  // });
 
   $("#next-round").on("touchstart click", function () {
     // TODO Add hide/show
@@ -386,15 +383,15 @@ $(document).ready(function () {
   //   // TODO Ed needs to add additional windows that need to be closed based on what Jonatan produces.
   // });
 
-  function game (event) {
-    event.preventDefault();    
+  function game(event) {
+    event.preventDefault();
     nextWord();
     playerRun();
     emptyArray();
     gameEnd();
   }
 
-  $("#play-game-btn").on("click", game);
+  $("#play-game-btn").on("touchstart click", game);
 
 }); // end of $(document).ready(function()
 // END OF FILE
