@@ -117,9 +117,10 @@ $(document).ready(function () {
     getHomeDiv.style.display = "none";
     getGamePageDiv.style.display = "none";
     getResultsDiv.style.display = "block";
-    getInputInfoDiv.style.display = "none";    console.log(">>> playerResults has fired. Therefore countdown==0.");
+    getInputInfoDiv.style.display = "none";
+    console.log(">>> playerResults has fired. Therefore countdown==0.");
     // TODO Tweak the visuals on the results below
-    $("#divResults").text("The results are: " +
+    $("#divResultsSoFar").text("The results are: " +
       "Team 1: " +
       correctT1 +
       " | Team 2: " +
@@ -259,15 +260,11 @@ $(document).ready(function () {
 
   // ! next-team
   $("#next-team").on("touchstart click", function () {
-    nextWord();
-    playerRun();
-  })
-  // TODO PROBLEM: Above and Below are duplicates, for the most part
-  // ! next-team
-  $("#next-team").on("touchstart click", function () {
     console.log("#next-team calls nextWord");
     nextWord();
-  });
+    console.log("#next-team calls playerRun");
+    playerRun();
+  })
 
   // ! correct
   $("#correct").on("touchstart click", function () {
