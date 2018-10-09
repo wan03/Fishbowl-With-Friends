@@ -1,8 +1,4 @@
 // BEGINNING OF SCRIPT.JS
-// * VERSIONS:
-// * 00 Initial script.js combined (unformatted)
-// * 01 Rearranging content into a top-down organizational hierarchy
-// * 02 Adding console.log validation and fixing minor errors with commenting to explain
 
 $(document).ready(function () {
   $('.modal').modal();
@@ -20,8 +16,6 @@ $(document).ready(function () {
   // ********** GLOBAL DECLARATIONS **********
 
   // Variables related to the scripting logic
-
-  // ! Jonatan: Ed corrected the formatting on this array
   var teamsArray =
     ["team1", "team2", "team3", "team4"],
     currentTeam = 1,
@@ -41,7 +35,7 @@ $(document).ready(function () {
 
   // Navigational variables 
   var currentWindow;
-  var previousWindow; // TODO Delete unless used later
+  var previousWindow;
   var initialClickEvent = true;
   var getHomeDiv = document.getElementById("divHome");
   var getInstructionsDiv = document.getElementById("divInstructions");
@@ -64,7 +58,6 @@ $(document).ready(function () {
       // Pick a remaining element...
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
-
       // And swap it with the current element.
       temporaryValue = array[currentIndex];
       array[currentIndex] = array[randomIndex];
@@ -73,33 +66,13 @@ $(document).ready(function () {
     return array;
   }
 
-
-  // Don't need the randomizeUsedArray function for now.
-
-  // function randomizeUsedArray() {
-  //   console.log("randomizeUsedArray has fired");
-  //   for (let i = 0; i < usedArray.length; i++) {
-  //     let j = Math.floor(Math.random() * (usedArray.length - 1 + 1) + 1); // ! Ed: Not sure about this
-  //     roundArray.push(usedArray[j]);
-  //   }
-  // };
-
-  // Retrieve teams from array
-  // ! Ed: Believe that this is an add-on when we later allow for inputting the # of teams
-
-  // Show words for 30 seconds while allowing them to click correct/incorrect. 
-  // If correct move to new array and award a point.
-  // If incorrect skip but keep in array.
-
   function playerRun() {
     console.log(">>> playerRun() has fired");
     clearInterval(playerInterval);
     playerInterval = setInterval(playerRemainingTime, 1000);
-
   };
 
   function playerRemainingTime() {
-    // ! Ed: Currently this function is not being referenced in the code
     console.log(">>> roundRemainingTime has fired");
     console.log("time--");
     time--;
@@ -114,10 +87,11 @@ $(document).ready(function () {
       console.log("time == 0");
       console.log("Call clearInterval(playerInterval) from noTime()");
       clearInterval(playerInterval);
-      console.log("rounds--");
-      rounds--;
+      // console.log("rounds--");
+      // rounds--;
       console.log("Call playerResults from noTime()");
       playerResults();
+      currentTeam++
     };
   };
 
@@ -129,8 +103,9 @@ $(document).ready(function () {
     console.log("currentWord++ results in currentWord=" + currentWord);
     console.log(roundArray[currentWord]);
     $("#word-phrase-box").text(roundArray[currentWord]);
-    if (currentWord > roundArray.length - 1)
+    if (currentWord > roundArray.length - 1) {
       currentWord = 0;
+    }
   }
 
   function usedWords() {
@@ -138,18 +113,22 @@ $(document).ready(function () {
     selectionsArray.push(roundArray[currentWord]);
   }
 
-  // At the end of 30 seconds show results from the player and wait for click to pass to next person. Make sure it randomizes at this stage.
-
-  // Still have to do all the show/hide stuff
   function playerResults() {
     // ! This fire when countdown == 0
     console.log(">>> playerResults has fired. Therefore countdown==0.");
-
-    // ! This still needs some work as it is showing undefined. How do we dynamically show the team points? 
-    $("#divResults").text("You got " + correctAnswers[currentTeam] + " points!");
+    // TODO Tweak the visuals on the results below
+    $("#divResults").text("The results are: " +
+      "Team 1: " +
+      correctT1 +
+      " | Team 2: " +
+      correctT2 +
+      " | Team 3: " +
+      correctT3 +
+      " | Team 4: " +
+      correctT4);
     currentTeam++;
     time = 30;
-    $("#pass-device").text("Please pass the phone to  the next team and click the button below to continue");
+    $("#pass-device").text("Please pass the phone to the next team and click the button below to continue");
   }
 
   $("#next-team").on("touchstart click", function () {
@@ -157,7 +136,6 @@ $(document).ready(function () {
     playerRun();
   })
 
-  // Repeat until all words are done, at that point show final round review and start a new round with all the words again
   function roundResults() {
     // ! fires when roundArray is empty
     // TODO Should redo this a for loop based on the length of the teams array
@@ -219,19 +197,13 @@ $(document).ready(function () {
   // If the click on a button they can go to the setup page to restart the game. Maybe later make it so that they can just reset the game
   function reset() {
     //Go back to set up page
-    // TODO TO BE COMPLETED BY ED OR JONATAN
+    // TODO TO BE COMPLETED BY ED
   }
 
   // ******** GLOBAL CLICK EVENTS ********
   // Retrieve words/quotes from API and place into an array
   $("#btnBegin").on("touchstart click", function () {
     // ! need to change this ID to a better one.
-    // var typeVerb = "verbs";
-    // var typeAdjective = "adjecs";
-    // var typeNouns = "nouns";
-
-    // var queryURL = "https://nlp.fi.muni.cz/projekty/random_word/run.cgi?language_selection=en&word_selection=" +
-    // typeVerb + "&model_selection=norm&length_selection=&probability_selection=true";
 
     var queryURL =
       "https://cors-anywhere.herokuapp.com/" + "https://opinionated-quotes-api.gigalixirapp.com//v1/quotes?rand=t&n=1&author=pearce&tags=future,transhumanism"
@@ -265,7 +237,6 @@ $(document).ready(function () {
         roundArray = randomizeSelectionArray(selectionsArray);
         console.log("it works" + roundArray)
       });
-      //Not sure if this will fire when the click event is fired or if it will get fired once everything inside the click even is done. 
     });
   });
 
@@ -330,11 +301,11 @@ $(document).ready(function () {
   // ********** BEGIN **********
   // $(document).on('touchstart click', document, function () {
 
-  //   // * <EVERYONE> The logic of initialClickEvent was originally used to assume a beginning splash page requiring a click or touch to proceed to the Home Page. I personally see a SPLASH PAGE as an add-on beyond the MVP. As it stands, the logic below therefore assumes the program will start in the Home Page at this point.
-  //   // * <EVERYONE> The initialClickEvent may be RESET to TRUE after a game is completed and the results are displayed. That'll be an easy way to guarantee that the user goes back to the Home Page after the game. Jonatan can reset all of his variables within the IF STMT below, if he'd like.
+  // * <EVERYONE> The logic of initialClickEvent was originally used to assume a beginning splash page requiring a click or touch to proceed to the Home Page. I personally see a SPLASH PAGE as an add-on beyond the MVP. As it stands, the logic below therefore assumes the program will start in the Home Page at this point.
+  // * <EVERYONE> The initialClickEvent may be RESET to TRUE after a game is completed and the results are displayed. That'll be an easy way to guarantee that the user goes back to the Home Page after the game. Jonatan can reset all of his variables within the IF STMT below, if he'd like.
 
   //   if (initialClickEvent == true) {
-  //     // Start in Home Page unless there is a splash page
+  // Start in Home Page unless there is a splash page
   //     getHomeDiv.style.display = "block";
   //     getInstructionsDiv.style.display = "none";
   //     getInputInfoDiv.style.display = "none";
@@ -350,17 +321,14 @@ $(document).ready(function () {
   //   getHomeDiv.style.display = "block";
   //   getInstructionsDiv.style.display = "none";
   //   getInputInfoDiv.style.display = "none";
-  //   // TODO Ed needs to add additional windows that need to be closed based on what Jonatan produces.
   // });
 
-  // // btnInstructions
-  // // TODO THIS WILL BE REPLACED WITH A MODAL THAT JEFFREY IS CODING
+  // btnInstructions
   // $(document).on('touchstart click', '#btnInstructions', function () {
   //   currentWindow = "Instructions";
   //   getHomeDiv.style.display = "none";
   //   getInstructionsDiv.style.display = "block";
   //   getInputInfoDiv.style.display = "none";
-  //   // TODO Ed needs to add additional windows that need to be closed based on what Jonatan & Jeffrey produce.
   // });
 
   // btnBegin
@@ -369,8 +337,7 @@ $(document).ready(function () {
   //   getHomeDiv.style.display = "none";
   //   getInstructionsDiv.style.display = "none";
   //   getInputInfoDiv.style.display = "block";
-  //   // TODO Ed needs to add additional windows that need to be closed based on what Jonatan & Jeffrey produce.
-  //   // TODO Jonatan inserts his game logic beginning here. Specifically as it relates to inputted info.
+
   // });
 
   // TODO We can use the commented-out section below as a template for additional buttons that Jonatan's logic requires. I'm thinking of his need to get beyond the InputInfo page and when using the additional gameplay pages.
@@ -380,7 +347,6 @@ $(document).ready(function () {
   //   getHomeDiv.style.display = "";
   //   getInstructionsDiv.style.display = "";
   //   getInputInfoDiv.style.display = "";
-  //   // TODO Ed needs to add additional windows that need to be closed based on what Jonatan produces.
   // });
 
   function game(event) {
