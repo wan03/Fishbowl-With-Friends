@@ -208,8 +208,27 @@ $(document).ready(function () {
 
   // ******** GLOBAL CLICK EVENTS ********
 
+  // * <EVERYONE> The logic of initialClickEvent was originally used to assume a beginning splash page requiring a click or touch to proceed to the Home Page. I personally see a SPLASH PAGE as an add-on beyond the MVP. As it stands, the logic below therefore assumes the program will start in the Home Page at this point.
+  // * <EVERYONE> The initialClickEvent may be RESET to TRUE after a game is completed and the results are displayed. That'll be an easy way to guarantee that the user goes back to the Home Page after the game. Jonatan can reset all of his variables within the IF STMT below, if he'd like.
+  // Start in Home Page with everything else hidden unless there is a splash page
+  if (initialClickEvent == true) {
+    getHomeDiv.style.display = "block";
+    getGamePageDiv.style.display = "none";
+    getResultsDiv.style.display = "none";
+    getInputInfoDiv.style.display = "none";
+  }
+
   // ! btnHome
   $(document).on('touchstart click', '#btnHome', function () {
+    initialClickEvent = true;
+    getHomeDiv.style.display = "block";
+    getGamePageDiv.style.display = "none";
+    getResultsDiv.style.display = "none";
+    getInputInfoDiv.style.display = "none";
+  });
+
+  // ! btnQuit
+  $(document).on('touchstart click', '#btnQuit', function () {
     initialClickEvent = true;
     getHomeDiv.style.display = "block";
     getGamePageDiv.style.display = "none";
@@ -323,44 +342,8 @@ $(document).ready(function () {
     reset();
   });
 
-  // ********** BEGIN **********
-  // $(document).on('touchstart click', document, function () {
-
-  // * <EVERYONE> The logic of initialClickEvent was originally used to assume a beginning splash page requiring a click or touch to proceed to the Home Page. I personally see a SPLASH PAGE as an add-on beyond the MVP. As it stands, the logic below therefore assumes the program will start in the Home Page at this point.
-  // * <EVERYONE> The initialClickEvent may be RESET to TRUE after a game is completed and the results are displayed. That'll be an easy way to guarantee that the user goes back to the Home Page after the game. Jonatan can reset all of his variables within the IF STMT below, if he'd like.
-
-  // Start in Home Page with everything else hidden unless there is a splash page
-  if (initialClickEvent == true) {
-    getHomeDiv.style.display = "block";
-    getGamePageDiv.style.display = "none";
-    getResultsDiv.style.display = "none";
-    getInputInfoDiv.style.display = "none";
-  }
-
-  // }); // End of $(document).on('touchstart click', document, function ()
-
-  // btnHome
-  // $(document).on('touchstart click', '#btnHome', function () {
-  //   getHomeDiv.style.display = "block";
-  //   getInstructionsDiv.style.display = "none";
-  //   getInputInfoDiv.style.display = "none";
-  // });
-
-
-
-
-
-
-
+  // ! THIS KICKS OFF after pressing Play
   $("#play-game-btn").on("touchstart click", game);
-
-  // TODO We can use the commented-out section below as a template for additional buttons that Jonatan's logic requires. I'm thinking of his need to get beyond the InputInfo page and when using the additional gameplay pages.
-  // btn_
-  // $(document).on('touchstart click', '#btn_', function () {
-  //   getHomeDiv.style.display = "";
-  //   getInstructionsDiv.style.display = "";
-  //   getInputInfoDiv.style.display = "";
-  // });
 
 }); // end of $(document).ready(function()
 // END OF FILE
