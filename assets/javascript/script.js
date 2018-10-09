@@ -38,8 +38,10 @@ $(document).ready(function () {
   var previousWindow;
   var initialClickEvent = true;
   var getHomeDiv = document.getElementById("divHome");
-  var getInstructionsDiv = document.getElementById("divInstructions");
+  // var getInstructionsDiv = document.getElementById("divInstructions");
   var getInputInfoDiv = document.getElementById("divInputInfo");
+  var getGamePageDiv = document.getElementById("divGamePage");
+  var getResultsDiv = document.getElementById("divResults");
   var getBtnHome = document.getElementById("btnHome");
   var getBtnInstructions = document.getElementById("btnInstructions");
   var getBtnBegin = document.getElementById("btnBegin");
@@ -114,7 +116,7 @@ $(document).ready(function () {
   }
 
   function playerResults() {
-    // ! This fire when countdown == 0
+    // This fires when countdown == 0
     console.log(">>> playerResults has fired. Therefore countdown==0.");
     // TODO Tweak the visuals on the results below
     $("#divResults").text("The results are: " +
@@ -130,11 +132,6 @@ $(document).ready(function () {
     time = 30;
     $("#pass-device").text("Please pass the phone to the next team and click the button below to continue");
   }
-
-  $("#next-team").on("touchstart click", function () {
-    nextWord();
-    playerRun();
-  })
 
   function roundResults() {
     // ! fires when roundArray is empty
@@ -240,6 +237,10 @@ $(document).ready(function () {
     });
   });
 
+  $("#next-team").on("touchstart click", function () {
+    nextWord();
+    playerRun();
+  })
   $("#correct").on("touchstart click", function () {
     // TODO Add hide/show
     //Here would love to figure out how to dinamically create a variable using currentteam instead of this nested if statements.
@@ -304,14 +305,13 @@ $(document).ready(function () {
   // * <EVERYONE> The logic of initialClickEvent was originally used to assume a beginning splash page requiring a click or touch to proceed to the Home Page. I personally see a SPLASH PAGE as an add-on beyond the MVP. As it stands, the logic below therefore assumes the program will start in the Home Page at this point.
   // * <EVERYONE> The initialClickEvent may be RESET to TRUE after a game is completed and the results are displayed. That'll be an easy way to guarantee that the user goes back to the Home Page after the game. Jonatan can reset all of his variables within the IF STMT below, if he'd like.
 
-  //   if (initialClickEvent == true) {
-  // Start in Home Page unless there is a splash page
-  //     getHomeDiv.style.display = "block";
-  //     getInstructionsDiv.style.display = "none";
-  //     getInputInfoDiv.style.display = "none";
-  //     initialClickEvent = false; // Keeps from repeating the window until after the game is over
-  //     currentWindow = "divHome";
-  //   } // End of else (initialClickEvent == false)
+  // Start in Home Page with everything else hidden unless there is a splash page
+  if (initialClickEvent == true) {
+    getHomeDiv.style.display = "block";
+    getGamePageDiv.style.display = "none";
+    getResultsDiv.style.display = "none";
+    getInputInfoDiv.style.display = "none";
+  } 
 
   // }); // End of $(document).on('touchstart click', document, function ()
 
@@ -331,14 +331,15 @@ $(document).ready(function () {
   //   getInputInfoDiv.style.display = "none";
   // });
 
-  // btnBegin
-  // $(document).on('touchstart click', '#btnBegin', function () {
-  //   currentWindow = "InputInfo";
-  //   getHomeDiv.style.display = "none";
-  //   getInstructionsDiv.style.display = "none";
-  //   getInputInfoDiv.style.display = "block";
-
-  // });
+  // ! btnBegin
+  $(document).on('touchstart click', '#btnBegin', function () {
+    initialClickEvent = false;
+    // currentWindow = "InputInfo";
+    getHomeDiv.style.display = "none";
+    getGamePageDiv.style.display = "none";
+    getResultsDiv.style.display = "none";
+    getInputInfoDiv.style.display = "block";
+  });
 
   // TODO We can use the commented-out section below as a template for additional buttons that Jonatan's logic requires. I'm thinking of his need to get beyond the InputInfo page and when using the additional gameplay pages.
   // btn_

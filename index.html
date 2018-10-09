@@ -1,157 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Fish Bowl Game | Home</title>
-    <!-- Material Icon CDN -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Materialize CSS CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <link rel="stylesheet" href="assets/css/style.css"> 
-  </head>
 
-  <body class="blue">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fish Bowl Game | Home</title>
+  <!-- Material Icon CDN -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Materialize CSS CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
 
-<!-- !! HEADER --> 
-<header id="sticky-header">
-  <nav class="center-align orange darken-2">
-    <div class="container">
-      <h3 id="game-name" style="margin: 0;padding-top: 10px">Fish Bowl Game</h3>
-    </div>  
-  </nav>
-</header>
+<body class="blue">
+
+  <!-- !! HEADER -->
+  <header id="sticky-header">
+    <nav class="center-align orange darken-2">
+      <div class="container">
+        <h3 id="game-name" style="margin: 0;padding-top: 10px">Fish Bowl Game</h3>
+      </div>
+    </nav>
+  </header>
 
 
-<!-- !! HOME PAGE OF GAME -->    
-<div id="divHome">
+  <!-- !! HOME PAGE OF GAME -->
+  <div id="divHome">
 
-  <main class="responsive-img center-align container">
-    <img src="assets/images/fishbowl-narrow.jpeg" alt="Fish Bowl Game" id="fish-bowl-img" >
-  
-    <div class="row">
-      <div class="col">
-        <p class="white-text">Are you ready to play a fun and entertaining?  If you have never played before, click the "How to Play" for the instructions.  Otherwise, click "Start Game" to get the PARTY STARTED!</p>
-        <div class="row">
-          <div class="col s12 m6 l6">
-            <a class="waves-effect waves-light btn-large white-text orange darken-2" id="btnBegin">Start Game</a> 
-          </div>
-    
+    <main class="responsive-img center-align container">
+      <img src="assets/images/fishbowl-narrow.jpeg" alt="Fish Bowl Game" id="fish-bowl-img">
+
+      <div class="row">
+        <div class="col">
+          <p class="white-text">Are you ready to play a fun and entertaining game? If you have never played before,
+            click the "How to Play" for the instructions. Otherwise, click "Start Game" to get the PARTY STARTED!</p>
+          <div class="row">
+            <div class="col s12 m6 l6">
+              <a class="waves-effect waves-light btn-large white-text orange darken-2" id="btnBegin">Start Game</a>
+            </div>
+
             <!-- Modal Trigger -->
-          <div class="col s12 m6 l6">
-            <a class="waves-effect waves-light btn-large white-text orange darken-2 modal-trigger" id="btnInstructions" href="#modal1">How to Play</a> 
-              
-            <div id="modal1" class="modal modal-fixed-footer left-align">
-              <div class="modal-content">
-                <h4>How to Play</h4>
-                <hr>
-                <h6><strong>Step 1:  Populate the fishbowl</strong></h6>
-                <p>
-                    Start by separating everyone into two equal teams.   Each player will then take three strips of paper and write a word or familiar phrase on each piece.  Players will have to guess the words or phrases later on, so they should’t be too obscure.  Each player then folds their pieces of paper in half and places them into the fishbowl.  After all of the pieces of paper are in the fishbowl, someone has to shake the bowl to mix them up.
-                </p>
-                <hr>
-                <h6><strong>Step 2: Play the "taboo" round</strong></h6>
-                <p>
-                  The taboo round is first up.  The goal of this round is to guess as many words or phrases as possible within 1 minute.   The round progresses like this:
-                  
-                  The starting team selects a player to go first.
-                  That player will grab a piece of paper from the fishbowl and reads it.  The 1-minute timer will start as soon as they pick a piece of paper from the fishbowl.
-                  The player will then use words to get their team mates to guess the word or phrase that is on the paper.  They cannot use any hand gestures — only words.  They can’t say any of the words that are on the paper, as they are the “taboo” words.  For example, if the word is “Cheeseburger” they might say “You eat this at McDonalds”
-                  If the player thinks the word or phrase is too hard, they can “pass” and put the paper back into the fishbowl.  However, players are only do this once per round.
-                  If the team successfully guesses the word, they get to keep the piece of paper.
-                  After 1 minute has elapsed, the other team gets their turn.  They also have 1-minute to guess as many words as possible.
-                  Each team continues to take 1-minute turns until all of the pieces of paper have been removed from the fishbowl.  When the fishbowl is empty, each team counts the pieces of paper they have gathered.  Each piece contributes 1 point to their score.  After tallying the each team’s score, fill the fishbowl with the pieces of paper and move onto round 2!   
-                </p>
-                <hr>
-                <h6><strong>Step 3: Play the "password" round</strong></h6>
-                <p>
-                  The next round is played in a similar fashion, with each team having 1-minute to guess as many words or phrases as possible.  The team that went second last time will get to go first for this round.
-                  
-                  The main difference is that the player reading the paper can only use one word to describe the word or phrase.  So, if the word is “Cheeseburger” this time they may use a single word like “McDonalds” to describe it.  The team needs to remember the words that were mentioned in the first round and use the “password” as a hint.  The teams continue to alternate with 1-minute rounds each, then the pieces of paper are tallied and placed back into the fishbowl.
-                </p>
-                <hr>
-                <h6><strong>Step 4: Play the “charades” round</strong></h6>
-                <p>
-                  The next round plays out in the same way, with each team taking their one minute turns.  The main difference here is that player with the paper cannot speak.  They must use physical gestures to communicate the word on the paper.  For “Cheeseburger” they might pretend to be holding and eating a cheeseburger.  At the end of the round, the scores are tallied up once more.  The team that has the most points from all three rounds is declared the winner!
-                </p>
-                <hr>
-                <h6><strong>Step 5: Bonus Round</strong></h6>
-                <p>
-                  Why let the fun end there?  If you want to take The Fishbowl Game to the next level, play the spooky version!  Get a bed sheet from the cupboard and drape it over the player who is reading the pieces of paper.  The team will then have to guess the word while the player makes movements beneath the sheet!  It is very challenging and a ton of fun.
-                </p>
-              </div>
-              <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+            <div class="col s12 m6 l6">
+              <a class="waves-effect waves-light btn-large white-text orange darken-2 modal-trigger" id="btnInstructions"
+                href="#modal1">How to Play</a>
+
+              <div id="modal1" class="modal modal-fixed-footer left-align">
+                <div class="modal-content">
+                  <h4>How to Play</h4>
+                  <hr>
+                  <h6><strong>Step 1: Populate the fishbowl</strong></h6>
+                  <p>
+                    Start by separating everyone into two equal teams. Each player will then take three strips of paper
+                    and write a word or familiar phrase on each piece. Players will have to guess the words or phrases
+                    later on, so they should’t be too obscure. Each player then folds their pieces of paper in half and
+                    places them into the fishbowl. After all of the pieces of paper are in the fishbowl, someone has to
+                    shake the bowl to mix them up.
+                  </p>
+                  <hr>
+                  <h6><strong>Step 2: Play the "taboo" round</strong></h6>
+                  <p>
+                    The taboo round is first up. The goal of this round is to guess as many words or phrases as
+                    possible within 1 minute. The round progresses like this:
+
+                    The starting team selects a player to go first.
+                    That player will grab a piece of paper from the fishbowl and reads it. The 1-minute timer will
+                    start as soon as they pick a piece of paper from the fishbowl.
+                    The player will then use words to get their team mates to guess the word or phrase that is on the
+                    paper. They cannot use any hand gestures — only words. They can’t say any of the words that are on
+                    the paper, as they are the “taboo” words. For example, if the word is “Cheeseburger” they might say
+                    “You eat this at McDonalds”
+                    If the player thinks the word or phrase is too hard, they can “pass” and put the paper back into
+                    the fishbowl. However, players are only do this once per round.
+                    If the team successfully guesses the word, they get to keep the piece of paper.
+                    After 1 minute has elapsed, the other team gets their turn. They also have 1-minute to guess as
+                    many words as possible.
+                    Each team continues to take 1-minute turns until all of the pieces of paper have been removed from
+                    the fishbowl. When the fishbowl is empty, each team counts the pieces of paper they have gathered.
+                    Each piece contributes 1 point to their score. After tallying the each team’s score, fill the
+                    fishbowl with the pieces of paper and move onto round 2!
+                  </p>
+                  <hr>
+                  <h6><strong>Step 3: Play the "password" round</strong></h6>
+                  <p>
+                    The next round is played in a similar fashion, with each team having 1-minute to guess as many
+                    words or phrases as possible. The team that went second last time will get to go first for this
+                    round.
+
+                    The main difference is that the player reading the paper can only use one word to describe the word
+                    or phrase. So, if the word is “Cheeseburger” this time they may use a single word like “McDonalds”
+                    to describe it. The team needs to remember the words that were mentioned in the first round and use
+                    the “password” as a hint. The teams continue to alternate with 1-minute rounds each, then the
+                    pieces of paper are tallied and placed back into the fishbowl.
+                  </p>
+                  <hr>
+                  <h6><strong>Step 4: Play the “charades” round</strong></h6>
+                  <p>
+                    The next round plays out in the same way, with each team taking their one minute turns. The main
+                    difference here is that player with the paper cannot speak. They must use physical gestures to
+                    communicate the word on the paper. For “Cheeseburger” they might pretend to be holding and eating a
+                    cheeseburger. At the end of the round, the scores are tallied up once more. The team that has the
+                    most points from all three rounds is declared the winner!
+                  </p>
+                  <hr>
+                  <h6><strong>Step 5: Bonus Round</strong></h6>
+                  <p>
+                    Why let the fun end there? If you want to take The Fishbowl Game to the next level, play the spooky
+                    version! Get a bed sheet from the cupboard and drape it over the player who is reading the pieces
+                    of paper. The team will then have to guess the word while the player makes movements beneath the
+                    sheet! It is very challenging and a ton of fun.
+                  </p>
+                </div>
+                <div class="modal-footer">
+                  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>           
-  </main>
-</div> <!-- Close divHome -->
+    </main>
+  </div> <!-- Close divHome -->
 
 
-<!-- !! START OF GAME / USER INPUT OF TEAMS -->
+  <!-- !! START OF GAME / USER INPUT OF TEAMS -->
 
-<div class="divInputInfo">
-  
-  <main class="container">
-    <div class="row user-input-row">
-      <form class="col s12">
-        
-        <!-- Team Name Input |||||  TO BE USED IN LATER VERSIONS -->
-        <!-- <div class="row">
+  <div class="divInputInfo">
+
+    <main class="container">
+      <div class="row user-input-row">
+        <form class="col s12">
+
+          <!-- Team Name Input |||||  TO BE USED IN LATER VERSIONS -->
+          <!-- <div class="row">
           <div class="input-field col s12">
             <input placeholder="Placeholder" id="team_name" type="text">
             <label for="team_name">Team Name</label>
           </div>  
         </div> -->
 
-        <!-- ** Category/Topic of Questions -->
-        <div class="row">
-          <div class="col s6">
-            <label for="number-of-teams-input" style=color:white>Choose the number of Teams</label>
-            <select class="browser-default" id="#inputTeams">
-              <!-- <option value="" disabled selected>Choose the number of Teams</option> -->
-              <option value="1">2</option>
-              <option value="2">3</option>
-              <option value="3">4</option>
-            </select>
+          <!-- ** Category/Topic of Questions -->
+          <div class="row">
+            <div class="col s6">
+              <label for="number-of-teams-input" style=color:white>Choose the number of Teams</label>
+              <select class="browser-default" id="#inputTeams">
+                <!-- <option value="" disabled selected>Choose the number of Teams</option> -->
+                <option value="1">2</option>
+                <option value="2">3</option>
+                <option value="3">4</option>
+              </select>
+            </div>
+            <div class="col s6">
+              <label for="number-of-rounds-input" style=color:white>Choose the number of Rounds</label>
+              <select class="browser-default" id="#inputRounds">
+                <!-- <option value="" disabled selected>Choose the number of Rounds</option> -->
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
           </div>
-          <div class="col s6">
-            <label for="number-of-rounds-input" style=color:white>Choose the number of Rounds</label>
-            <select class="browser-default" id="#inputRounds">
-              <!-- <option value="" disabled selected>Choose the number of Rounds</option> -->
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
-          </div>
-        </div>
 
-        <!-- ** Number of Questions |||||  TO BE USED IN LATER VERSIONS -->
-        <!-- <div class="row">
+          <!-- ** Number of Questions |||||  TO BE USED IN LATER VERSIONS -->
+          <!-- <div class="row">
           <div class="input-field col s12">
             <input placeholder="Choose between 10-20 words" id="number-of-words" type="text">
             <label for="number-of-words"># of Words</label>
           </div>
         </div> -->
 
-        <!-- ** Number of Rounds -->
-        <!-- <div class="row">
+          <!-- ** Number of Rounds -->
+          <!-- <div class="row">
           <div class="input-field col s12">
             <input placeholder="3" id="number-of-rounds" type="text">
             <label for="number-of-rounds"># of Rounds</label>
           </div>
         </div> -->
-        
 
-        <!-- ** Category/Topic of Questions -->
-        <div class="row">
+
+          <!-- ** Category/Topic of Questions -->
+          <!-- <div class="row">
           <div class="col s12">
             <label for="category-input" style=color:white>Category/Topic</label>
             <select class="browser-default" id="game-choice">
@@ -161,66 +191,96 @@
               <option value="3">Option 3</option>
             </select>
           </div>
-        </div>
+        </div> -->
 
-        <p id="messageBox" style="background-color:red; color: white; width: 40%" class="center-align">Validation Message Goes Here</p>
+          <!-- <p id="messageBox" style="background-color:red; color: white; width: 40%" class="center-align">Validation Message Goes Here</p> -->
 
-        <div class="row">
-          <div class="col s12">
-            <button class="btn waves-effect waves-light orange darken-2" type="submit" name="action">Submit</button>
-            <!-- <button class="btn waves-effect waves-light orange darken-2" type="clear" name="action">Clear</button> -->
-            <button class="btn waves-effect waves-light orange darken-2" id="play-game-btn">Play</button>
-            <button class="waves-effect waves-light btn white-text orange darken-2" id="btnHome">Home</button>  
+          <div class="row">
+            <div class="col s12">
+              <!-- <button class="btn waves-effect waves-light orange darken-2" type="submit" name="action">Submit</button> -->
+              <!-- <button class="btn waves-effect waves-light orange darken-2" type="clear" name="action">Clear</button> -->
+              <button class="btn waves-effect waves-light orange darken-2" id="play-game-btn">Play</button>
+              <button class="waves-effect waves-light btn white-text orange darken-2" id="btnHome">Home</button>
+              <button class="waves-effect waves-light btn white-text orange darken-2 modal-trigger" href="#modal1">How
+                to Play</button>
+
+            </div>
           </div>
-        </div>
 
-        <div class="row">
-          <div class="col s12">
-            <!-- MODAL TRIGGER -->
-            <button class="waves-effect waves-light btn white-text orange darken-2 modal-trigger" href="#modal1">How to Play</button> 
-              
+          <div class="row">
+            <div class="col s12">
+              <!-- MODAL TRIGGER -->
+              <!-- <button class="waves-effect waves-light btn white-text orange darken-2 modal-trigger" href="#modal1">How to Play</button>  -->
+
               <div id="modal1" class="modal modal-fixed-footer left-align">
                 <div class="modal-content">
                   <h4>How to Play</h4>
                   <hr>
 
-                  <h6><strong>Step 1:  Populate the fishbowl</strong></h6>
+                  <h6><strong>Step 1: Populate the fishbowl</strong></h6>
                   <p>
-                  Start by separating everyone into two equal teams.   Each player will then take three strips of paper and write a word or familiar phrase on each piece.  Players will have to guess the words or phrases later on, so they should’t be too obscure.  Each player then folds their pieces of paper in half and places them into the fishbowl.  After all of the pieces of paper are in the fishbowl, someone has to shake the bowl to mix them up.
+                    Start by separating everyone into two equal teams. Each player will then take three strips of paper
+                    and write a word or familiar phrase on each piece. Players will have to guess the words or phrases
+                    later on, so they should’t be too obscure. Each player then folds their pieces of paper in half and
+                    places them into the fishbowl. After all of the pieces of paper are in the fishbowl, someone has to
+                    shake the bowl to mix them up.
                   </p>
                   <hr>
 
                   <h6><strong>Step 2: Play the "taboo" round</strong></h6>
                   <p>
-                  The taboo round is first up.  The goal of this round is to guess as many words or phrases as possible within 1 minute.   The round progresses like this:
-                      
-                  The starting team selects a player to go first.
-                  That player will grab a piece of paper from the fishbowl and reads it.  The 1-minute timer will start as soon as they pick a piece of paper from the fishbowl.
-                  The player will then use words to get their team mates to guess the word or phrase that is on the paper.  They cannot use any hand gestures — only words.  They can’t say any of the words that are on the paper, as they are the “taboo” words.  For example, if the word is “Cheeseburger” they might say “You eat this at McDonalds”
-                  If the player thinks the word or phrase is too hard, they can “pass” and put the paper back into the fishbowl.  However, players are only do this once per round.
-                  If the team successfully guesses the word, they get to keep the piece of paper.
-                  After 1 minute has elapsed, the other team gets their turn.  They also have 1-minute to guess as many words as possible.
-                  Each team continues to take 1-minute turns until all of the pieces of paper have been removed from the fishbowl.  When the fishbowl is empty, each team counts the pieces of paper they have gathered.  Each piece contributes 1 point to their score.  After tallying the each team’s score, fill the fishbowl with the pieces of paper and move onto round 2!   
+                    The taboo round is first up. The goal of this round is to guess as many words or phrases as
+                    possible within 1 minute. The round progresses like this:
+
+                    The starting team selects a player to go first.
+                    That player will grab a piece of paper from the fishbowl and reads it. The 1-minute timer will
+                    start as soon as they pick a piece of paper from the fishbowl.
+                    The player will then use words to get their team mates to guess the word or phrase that is on the
+                    paper. They cannot use any hand gestures — only words. They can’t say any of the words that are on
+                    the paper, as they are the “taboo” words. For example, if the word is “Cheeseburger” they might say
+                    “You eat this at McDonalds”
+                    If the player thinks the word or phrase is too hard, they can “pass” and put the paper back into
+                    the fishbowl. However, players are only do this once per round.
+                    If the team successfully guesses the word, they get to keep the piece of paper.
+                    After 1 minute has elapsed, the other team gets their turn. They also have 1-minute to guess as
+                    many words as possible.
+                    Each team continues to take 1-minute turns until all of the pieces of paper have been removed from
+                    the fishbowl. When the fishbowl is empty, each team counts the pieces of paper they have gathered.
+                    Each piece contributes 1 point to their score. After tallying the each team’s score, fill the
+                    fishbowl with the pieces of paper and move onto round 2!
                   </p>
                   <hr>
 
                   <h6><strong>Step 3: Play the "password" round</strong></h6>
                   <p>
-                  The next round is played in a similar fashion, with each team having 1-minute to guess as many words or phrases as possible. The team that went second last time will get to go first for this round.
-                  
-                  The main difference is that the player reading the paper can only use one word to describe the word or phrase.  So, if the word is “Cheeseburger” this time they may use a single word like “McDonalds” to describe it.  The team needs to remember the words that were mentioned in the first round and use the “password” as a hint.  The teams continue to alternate with 1-minute rounds each, then the pieces of paper are tallied and placed back into the fishbowl.
+                    The next round is played in a similar fashion, with each team having 1-minute to guess as many
+                    words or phrases as possible. The team that went second last time will get to go first for this
+                    round.
+
+                    The main difference is that the player reading the paper can only use one word to describe the word
+                    or phrase. So, if the word is “Cheeseburger” this time they may use a single word like “McDonalds”
+                    to describe it. The team needs to remember the words that were mentioned in the first round and use
+                    the “password” as a hint. The teams continue to alternate with 1-minute rounds each, then the
+                    pieces of paper are tallied and placed back into the fishbowl.
                   </p>
                   <hr>
 
                   <h6><strong>Step 4: Play the “charades” round</strong></h6>
                   <p>
-                    The next round plays out in the same way, with each team taking their one minute turns.  The main difference here is that player with the paper cannot speak.  They must use physical gestures to communicate the word on the paper.  For “Cheeseburger” they might pretend to be holding and eating a cheeseburger.  At the end of the round, the scores are tallied up once more.  The team that has the most points from all three rounds is declared the winner!
+                    The next round plays out in the same way, with each team taking their one minute turns. The main
+                    difference here is that player with the paper cannot speak. They must use physical gestures to
+                    communicate the word on the paper. For “Cheeseburger” they might pretend to be holding and eating a
+                    cheeseburger. At the end of the round, the scores are tallied up once more. The team that has the
+                    most points from all three rounds is declared the winner!
                   </p>
                   <hr>
 
                   <h6><strong>Step 5: Bonus Round</strong></h6>
                   <p>
-                    Why let the fun end there?  If you want to take The Fishbowl Game to the next level, play the spooky version!  Get a bed sheet from the cupboard and drape it over the player who is reading the pieces of paper.  The team will then have to guess the word while the player makes movements beneath the sheet!  It is very challenging and a ton of fun.
+                    Why let the fun end there? If you want to take The Fishbowl Game to the next level, play the spooky
+                    version! Get a bed sheet from the cupboard and drape it over the player who is reading the pieces
+                    of paper. The team will then have to guess the word while the player makes movements beneath the
+                    sheet! It is very challenging and a ton of fun.
                   </p>
                 </div>
 
@@ -231,118 +291,113 @@
               </div>
             </div>
           </div>
-        </div>   
+      </div>
       </form>
-    </div>
-  </main>      
-</div> <!-- Close div User Input/Game Info -->
-
-
-<!-- !! GAME PAGE -->
-<div class="divGamePage">
-        
-  <main class="container">
-    <div id="game-counter">
-
-      <div class="row center-align">
-        <div class="col s12 white-text">
-          <h4>Count Down Clock</h4>
-          <h5 id="time"></h5>
-        </div>
-      </div>
-
-      <div class="row center-align">
-        <div class="col s12 white-text" id="word-phrase-box">
-          <h4>Word or Phrase Goes Here</h4>
-        </div>
-      </div>
-
-      <div class="row center-align">
-        <div class="col s6">
-            <button class="btn waves-effect waves-light orange darken-2" id="correct">Right</button>
-        </div>
-        <div class="col s6">
-            <button class="btn waves-effect waves-light orange darken-2" id="incorrect">Wrong</button>
-        </div>
-      </div>
-
-    </div>
+  </div>
   </main>
-
-</div>  <!-- Close divGamePage -->
-
-
-<!-- !! RESULTS OF GAME -->    
-<div id="divResults"></div>
-
-<main class="container center-align white-text">
-  <h2>Results of Game</h2>
-  <p>Team 1 Results:  0</p>
-  <p>Team 2 Results:  1</p>
-  <p>Team 3 Results:  2</p>
-  <p id="pass-device"></p>
-  
+  </div> <!-- Close div User Input/Game Info -->
 
 
-  <div class="row center-align white-text`">
-    <div class="col s12">
-      <p>X Team WINS!!</p>
-    </div>
- <!-- ! Created these buttons for the results that are in between teams to test that the buttons work. Will have to either show/hide these when appropriate or just create two separate result pages -Jonatan -->
-</div>
-<div class="row center-align">
-  <div class="col s6">
-    <button class="btn waves-effect waves-light orange darken-2">Quit</button>
-  </div>
-  <div class="col s6">
-    <button class="btn waves-effect waves-light orange darken-2" id="next-team">Next Team</button>
-  </div>
-</div>
-
-  <!-- ! Created these buttons for the results that are in between rounds to test that the buttons work. Will have to either show/hide these when appropriate or just create two separate result pages -Jonatan -->
-  </div>
-  <div class="row center-align">
-    <div class="col s6">
-      <button class="btn waves-effect waves-light orange darken-2">Quit</button>
-    </div>
-    <div class="col s6">
-      <button class="btn waves-effect waves-light orange darken-2" id="next-round">Next Round</button>
-    </div>
-</div>
-
-  <div class="row center-align">
-      <div class="col s6">
-        <button class="btn waves-effect waves-light orange darken-2">Quit</button>
+  <!-- !! GAME PAGE -->
+  <div class="divGamePage">
+    <main class="container">
+      <div id="game-counter">
+        <div class="row center-align">
+          <div class="col s12 white-text">
+            <h4>Count Down Clock</h4>
+            <h5 id="time"></h5>
+          </div>
+        </div>
+        <div class="row center-align">
+          <div class="col s12 white-text" id="word-phrase-box">
+            <h4>Word or Phrase Goes Here</h4>
+          </div>
+        </div>
+        <div class="row center-align">
+          <div class="col s6">
+            <button class="btn waves-effect waves-light orange darken-2" id="correct">Right</button>
+          </div>
+          <div class="col s6">
+            <button class="btn waves-effect waves-light orange darken-2" id="incorrect">Wrong</button>
+          </div>
+        </div>
       </div>
-      <div class="col s6">
-        <button class="btn waves-effect waves-light orange darken-2" id="restart">Play Again</button>
+    </main>
+  </div> <!-- Close divGamePage -->
+
+
+  <!-- !! RESULTS OF GAME -->
+  <div id="divResults">
+
+    <main class="container center-align white-text">
+      <h2>Results of Game</h2>
+      <p>Team 1 Results: 0</p>
+      <p>Team 2 Results: 1</p>
+      <p>Team 3 Results: 2</p>
+      <p id="pass-device"></p>
+
+      <div class="row center-align white-text`">
+        <div class="col s12">
+          <p>X Team WINS!!</p>
+        </div>
+        <!-- ! Created these buttons for the results that are in between teams to test that the buttons work. Will have to either show/hide these when appropriate or just create two separate result pages -Jonatan -->
       </div>
-  </div>
+      <div class="row center-align">
+        <div class="col s6">
+          <button class="btn waves-effect waves-light orange darken-2">Quit</button>
+        </div>
+        <div class="col s6">
+          <button class="btn waves-effect waves-light orange darken-2" id="next-team">Next Team</button>
+        </div>
+      </div>
 
-</main>
-</div>  <!-- END RESULTS OF GAME -->
+      <!-- ! Created these buttons for the results that are in between rounds to test that the buttons work. Will have to either show/hide these when appropriate or just create two separate result pages -Jonatan -->
+      <!-- </div> -->
+      <div class="row center-align">
+        <div class="col s6">
+          <button class="btn waves-effect waves-light orange darken-2">Quit</button>
+        </div>
+        <div class="col s6">
+          <button class="btn waves-effect waves-light orange darken-2" id="next-round">Next Round</button>
+        </div>
+      </div>
+
+      <div class="row center-align">
+        <div class="col s6">
+          <button class="btn waves-effect waves-light orange darken-2">Quit</button>
+        </div>
+        <div class="col s6">
+          <button class="btn waves-effect waves-light orange darken-2" id="restart">Play Again</button>
+        </div>
+      </div>
+
+    </main>
+  </div> <!-- End ResultsDiv -->
 
 
 
-<!-- !! FOOTER --> 
-<footer>
-  <div class="footer-copyright center-align orange darken-2 white-text" id="sticky-footer">
-    <div class="container">
-      © 2018 Copyright Mon/Wed Project Group 5
+
+  <!-- !! FOOTER -->
+  <footer>
+    <div class="footer-copyright center-align orange darken-2 white-text" id="sticky-footer">
+      <div class="container">
+        © 2018 Copyright Mon/Wed Project Group 5
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
 
 
-    <!-- jQuery CDN -->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <!-- Materialize JS CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+  <!-- Materialize JS CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
-    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
-    <script src="assets/javascript/script.js"></script>
-    
+  <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
+  <script src="assets/javascript/script.js"></script>
 
-  </body>
+
+</body>
+
 </html>
