@@ -91,6 +91,10 @@ $(document).ready(function () {
   };
 
   function nextWord() {
+    getHomeDiv.style.display = "none";
+    getGamePageDiv.style.display = "block";
+    getResultsDiv.style.display = "none";
+    getInputInfoDiv.style.display = "none";
     console.log(">>> nextWord() has fired");
     console.log(currentWord);
     console.log(roundArray[currentWord]);
@@ -110,7 +114,10 @@ $(document).ready(function () {
 
   function playerResults() {
     // This fires when countdown == 0
-    console.log(">>> playerResults has fired. Therefore countdown==0.");
+    getHomeDiv.style.display = "none";
+    getGamePageDiv.style.display = "none";
+    getResultsDiv.style.display = "block";
+    getInputInfoDiv.style.display = "none";    console.log(">>> playerResults has fired. Therefore countdown==0.");
     // TODO Tweak the visuals on the results below
     $("#divResults").text("The results are: " +
       "Team 1: " +
