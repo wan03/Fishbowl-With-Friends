@@ -38,13 +38,7 @@ $(document).ready(function () {
   var getHomeDiv = document.getElementById("divHome");
   var getInputInfoDiv = document.getElementById("divInputInfo");
   var getGamePageDiv = document.getElementById("divGamePage");
-  var getResultsDiv = document.getElementById("divResults");
-  var scores = {
-    correctT1 : correctT1,
-    correctT2 : correctT2,
-    correctT3 : correctT3,
-    correctT4 : correctT4
-  }
+  var getResultsDiv = document.getElementById("divResults");  
 
 
   // ******** GLOBAL FUNCTIONS ********
