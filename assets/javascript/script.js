@@ -287,22 +287,22 @@ $(document).ready(function () {
     //Here would love to figure out how to dinamically create a variable using currentteam instead of this nested if statements.
     if (currentTeam == 1) {
       correctT1++
-      database.ref().push({ correctT1: correctT1 });
+      database.ref("correctT1").set({ correctT1: correctT1 });
       usedWords();
       nextWord();
     } if (currentTeam == 2) {
       correctT2++
-      database.ref().push({ correctT2: correctT2 });
+      database.ref("correctT2").set({ correctT2: correctT2 });
       usedWords();
       nextWord();
     } if (currentTeam == 3) {
       correctT3++
-      database.ref().push({ correctT3: correctT3 });
+      database.ref("correctT3").set({ correctT3: correctT3 });
       usedWords();
       nextWord();
     } if (currentTeam == 4) {
       correctT4++
-      database.ref().push({ correctT4: correctT4 });
+      database.ref("correctT4").set({ correctT4: correctT4 });
       usedWords();
       nextWord();
     } if (currentTeam == 5) {
