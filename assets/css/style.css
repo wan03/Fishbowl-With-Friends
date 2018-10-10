@@ -17,6 +17,10 @@ main {
   margin: auto;
 }
 
+#teamCurrentlyWinning p {
+  margin: 0;
+}
+
 #intro-text {
   margin: 5% 10%;
 }

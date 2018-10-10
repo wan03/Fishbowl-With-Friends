@@ -3,16 +3,16 @@
 $(document).ready(function () {
   $('.modal').modal();
   // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAWN9UIOd5JAV1x4r8cPgBYsYQcL4sXEXA",
-    authDomain: "project-1-445e8.firebaseapp.com",
-    databaseURL: "https://project-1-445e8.firebaseio.com",
-    projectId: "project-1-445e8",
-    storageBucket: "",
-    messagingSenderId: "1029201455873"
-  };
-  firebase.initializeApp(config);
-  var database = firebase.database();
+  // var config = {
+  //   apiKey: "AIzaSyAWN9UIOd5JAV1x4r8cPgBYsYQcL4sXEXA",
+  //   authDomain: "project-1-445e8.firebaseapp.com",
+  //   databaseURL: "https://project-1-445e8.firebaseio.com",
+  //   projectId: "project-1-445e8",
+  //   storageBucket: "",
+  //   messagingSenderId: "1029201455873"
+  // };
+  // firebase.initializeApp(config);
+
   // ********** GLOBAL DECLARATIONS **********
 
   // Variables related to the scripting logic
@@ -28,7 +28,6 @@ $(document).ready(function () {
     playerInterval,
     selectionsArray = [],
     roundArray = [],
-    placeholderArray = [],
     usedArray = [],
     currentWord = -1; // ! Teams and Rounds are hardcoded for now
   // var quotesArray = []; // TODO To be used once the second API is functional
@@ -60,6 +59,7 @@ $(document).ready(function () {
   }
 
   function playerRun() {
+    console.log(">>> playerRun() has fired");
     clearInterval(playerInterval);
     playerInterval = setInterval(playerRemainingTime, 1000);
   };
@@ -73,6 +73,7 @@ $(document).ready(function () {
 
   function noTime() {
     if (time == 0) {
+      console.log("time == 0");
       clearInterval(playerInterval);
       playerResults();
       currentTeam++
@@ -91,11 +92,11 @@ $(document).ready(function () {
     }
   }
 
+  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   function usedWords() {
     console.log(">>> usedWords() has fired");
     console.log(roundArray[currentWord]);
-    // selectionsArray.push(roundArray[currentWord]);
-    roundArray.splice(currentWord, 1);
+    selectionsArray.push(roundArray[currentWord]);
   }
 
   function playerResults() {
@@ -105,6 +106,7 @@ $(document).ready(function () {
     getGamePageDiv.style.display = "none";
     getResultsDiv.style.display = "block";
     getInputInfoDiv.style.display = "none";
+    console.log(">>> playerResults has fired. Therefore countdown==0.");
     // TODO Tweak the visuals on the results below
     winningTeam = "Team 1"; // default
     if (correctT2 > correctT1) {
@@ -116,18 +118,6 @@ $(document).ready(function () {
     if (correctT4 > correctT3) {
       winningTeam = "Team 4";
     }
-
-    database.ref().on("child_added", function (childSnapshot) {
-      console.log(childSnapshot.val());
-
-      // Store everything into a variable.
-      correctT1 = childSnapshot.val().correctT1;
-      correctT2 = childSnapshot.val().correctT2;
-      correctT3 = childSnapshot.val().correctT3;
-      correctT4 = childSnapshot.val().correctT4;
-    });
-
-
     $("#divResultsSoFar").html("The results are: " +
       "<ul><li>Team 1: " +
       correctT1 + "</li>" +
@@ -137,22 +127,19 @@ $(document).ready(function () {
       correctT3 + "</li>" +
       "<li>Team 4: " +
       correctT4 + "</li></ul>");
-    $("#teamCurrentlyWinning").html("<p>" + winningTeam + " is the leader</p>")
+    $("#teamCurrentlyWinning").html("<br><p>" + winningTeam + " is the leader</p><p></p>")
     time = 30;
   }
 
+  // !!!!!!!!!!!!!!!!!!!!!
   function nextRound() {
     console.log(">>> nextRound has fired");
+    console.log("round--, therefore Press 'Next Round' Button");
     rounds--;
     currentWord = 0;
     currentTeam++
     console.log("Call randomizeUsedArray from nextRound()");
-    console.log(selectionsArray);
-    placeholderArray = randomizeSelectionArray(selectionsArray);
-    for (let i = 0; i < placeholderArray.length; i++) {
-      roundArray.push(placeholderArray[i]);
-    }
-    console.log(roundArray)
+    roundArray = randomizeSelectionArray(selectionsArray);
     time = 30;
     console.log("Call nextWord from nextRound()");
     nextWord();
@@ -160,17 +147,29 @@ $(document).ready(function () {
   }
 
   function emptyArray() {
+    console.log(">>> emptyArray has fired");
     if (roundArray.length == 0) {
-      console.log(">>> emptyArray has fired");
-      clearInterval(playerInterval);
+      console.log("Call nextRound from emptyArray");
       playerResults();
+      nextRound(); // ! This should happen on click after the results have been shown.
     }
   }
 
   function gameEnd() {
     // Do rounds until counter is 0 then move on to the final results page
     if (rounds == 0) {
-      playerResults();
+      console.log("round==0");
+      $("#results").text(
+        "The results are: " +
+        " Team 1: " +
+        correctT1 +
+        " | Team 2: " +
+        correctT2 +
+        " | Team 3: " +
+        correctT3 +
+        " | Team 4: " +
+        correctT4
+      )
     }
   }
 
@@ -187,7 +186,7 @@ $(document).ready(function () {
   function reset() {
     //Go back to set up page
     // TODO TO BE COMPLETED BY ED
-  };
+  }
 
   // ******** GLOBAL CLICK EVENTS ********
 
@@ -199,14 +198,6 @@ $(document).ready(function () {
     getGamePageDiv.style.display = "none";
     getResultsDiv.style.display = "none";
     getInputInfoDiv.style.display = "none";
-    currentTeam = 1;
-    currentWord = -1;
-    time = 30;
-    correctT1 = 0;
-    correctT2 = 0;
-    correctT3 = 0;
-    correctT4 = 0;
-    rounds = 3;
   }
 
   // ! btnHome
@@ -236,10 +227,6 @@ $(document).ready(function () {
     getResultsDiv.style.display = "none";
     getInputInfoDiv.style.display = "block";
     // ! need to change this ID to a better one.
-    correctT1 = 0;
-    correctT2 = 0;
-    correctT3 = 0;
-    correctT4 = 0;
     var queryURL =
       "https://cors-anywhere.herokuapp.com/" + "https://opinionated-quotes-api.gigalixirapp.com//v1/quotes?rand=t&n=1&author=pearce&tags=future,transhumanism"
     var queryURLquotes = "https://andruxnet-random-famous-quotes.p.mashape.com/?cat=famous&count=2";
@@ -263,18 +250,16 @@ $(document).ready(function () {
         for (let i = 0; i < response.length; i++) {
           selectionsArray.push(response[i].quote)
         }
-        placeholderArray = randomizeSelectionArray(selectionsArray);
-        for (let i = 0; i < placeholderArray.length; i++) {
-          roundArray.push(placeholderArray[i]);
-        }
-        console.log("done")
+        roundArray = randomizeSelectionArray(selectionsArray);
       });
     });
   });
 
   // ! next-team
   $("#next-team").on("touchstart click", function () {
+    console.log("#next-team calls nextWord");
     nextWord();
+    console.log("#next-team calls playerRun");
     playerRun();
     if (currentTeam == 5) {
       currentTeam = 1;
@@ -287,26 +272,20 @@ $(document).ready(function () {
     //Here would love to figure out how to dinamically create a variable using currentteam instead of this nested if statements.
     if (currentTeam == 1) {
       correctT1++
-      database.ref("correctT1").set({ correctT1: correctT1 });
       usedWords();
       nextWord();
     } if (currentTeam == 2) {
       correctT2++
-      database.ref("correctT2").set({ correctT2: correctT2 });
       usedWords();
       nextWord();
     } if (currentTeam == 3) {
       correctT3++
-      database.ref("correctT3").set({ correctT3: correctT3 });
       usedWords();
       nextWord();
     } if (currentTeam == 4) {
       correctT4++
-      database.ref("correctT4").set({ correctT4: correctT4 });
       usedWords();
       nextWord();
-    } if (currentTeam == 5) {
-      currentTeam = 1; // ! *******************
     }
   });
 
@@ -319,6 +298,7 @@ $(document).ready(function () {
   // ! next-round
   $("#next-round").on("touchstart click", function () {
     // TODO Add hide/show
+    console.log("#next-round calls nextRound");
     nextRound();
   });
 
