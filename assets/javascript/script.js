@@ -28,6 +28,7 @@ $(document).ready(function () {
     playerInterval,
     selectionsArray = [],
     roundArray = [],
+    placeholderArray = [],
     usedArray = [],
     currentWord = -1; // ! Teams and Rounds are hardcoded for now
   // var quotesArray = []; // TODO To be used once the second API is functional
@@ -95,7 +96,8 @@ $(document).ready(function () {
   function usedWords() {
     console.log(">>> usedWords() has fired");
     console.log(roundArray[currentWord]);
-    selectionsArray.push(roundArray[currentWord]);
+    // selectionsArray.push(roundArray[currentWord]);
+    roundArray.splice(currentWord, 1);
   }
 
   function playerResults() {
@@ -126,18 +128,22 @@ $(document).ready(function () {
       correctT3 + "</li>" +
       "<li>Team 4: " +
       correctT4 + "</li></ul>");
-    $("#teamCurrentlyWinning").html("<br><p>" + winningTeam + " is the leader</p><p></p>")
-    time = 30;    
+    $("#teamCurrentlyWinning").html("<p>" + winningTeam + " is the leader</p>")
+    time = 30;      
 }
 
   function nextRound() {
-    console.log(">>> nextRound has fired");
-    console.log("round--, therefore Press 'Next Round' Button");
+    console.log(">>> nextRound has fired");    
     rounds--;
     currentWord = 0;
     currentTeam++    
     console.log("Call randomizeUsedArray from nextRound()");
-    roundArray = randomizeSelectionArray(selectionsArray);
+    console.log(selectionsArray);
+    placeholderArray = randomizeSelectionArray(selectionsArray);
+        for (let i = 0; i < placeholderArray.length; i++) {
+          roundArray.push(placeholderArray[i]);
+        }
+    console.log(roundArray)
     time = 30;
     console.log("Call nextWord from nextRound()");
     nextWord();
@@ -145,11 +151,10 @@ $(document).ready(function () {
   }
 
   function emptyArray() {
-    console.log(">>> emptyArray has fired");
     if (roundArray.length == 0) {
-      console.log("Call nextRound from emptyArray");
-      playerResults();
-      nextRound(); // ! This should happen on click after the results have been shown.
+      console.log(">>> emptyArray has fired");
+      clearInterval(playerInterval);
+      playerResults();       
     }
   }
 
@@ -157,17 +162,7 @@ $(document).ready(function () {
     // Do rounds until counter is 0 then move on to the final results page
     if (rounds == 0) {
       console.log("round==0");
-      $("#results").text(
-        "The results are: " +
-        " Team 1: " +
-        correctT1 +
-        " | Team 2: " +
-        correctT2 +
-        " | Team 3: " +
-        correctT3 +
-        " | Team 4: " +
-        correctT4
-      )
+     playerResults();
     }
   }
 
@@ -248,7 +243,11 @@ $(document).ready(function () {
         for (let i = 0; i < response.length; i++) {
           selectionsArray.push(response[i].quote)
         }
-        roundArray = randomizeSelectionArray(selectionsArray);
+        placeholderArray = randomizeSelectionArray(selectionsArray);
+        for (let i = 0; i < placeholderArray.length; i++) {
+          roundArray.push(placeholderArray[i]);
+        }
+        console.log("done")
       });
     });
   });
@@ -284,7 +283,8 @@ $(document).ready(function () {
       correctT4++
       usedWords();
       nextWord();
-    }
+    } if (currentTeam == 5)
+    currentTeam = 1;
   });
 
   // ! incorrect
