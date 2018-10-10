@@ -4,28 +4,71 @@ body {
   flex-direction: column;
   }
 
-#sticky {
-    position: fixed;
-    top: 0;
-    width: 100%;
-  }
-
-/* main {
+main {
   flex: 1 0 auto;
-} */
+}
 
- #game-name {
+ /* #game-name {
   align-content: center;
- }
+ } */
  
  #fish-bowl-img {
   width: 100%;
   margin: auto;
-  border: 3px solid green;
-  padding: 5px;
 }
+
+#intro-text {
+  margin: 5% 10%;
+}
+
+i {
+  font-size: 125%;
+}
+
+#modal1 {
+  background-color: #2196f3;
+  color: white;
+}
+
+#modal1 h5 {
+  margin-top: 3%;
+}
+
+.modal-footer {
+  padding: 2 6;
+}
+
+#center-input {
+  margin-left: 25%;
+}
+
+#modal2 {
+  background-color: #2196f3;
+  color: white;
+}
+
+#modal2 h5 {
+  margin-top: 3%;
+}
+
+#game-counter {
+  margin: 0;
+}
+
+#word-phrase-box {
+  margin: 0;
+  height: 20%;
+}
+
+
+#sticky-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
  /* ******** MEDIA QUERIES ******** */
-@media screen and (max-width: 980px) {
+/* @media screen and (max-width: 980px) {
   .container {
     max-width: 980px;
   }
@@ -36,9 +79,7 @@ body {
   .container {
     max-width: 768px;
   }
-  #fish-bowl-img {
-    width: 50%;
-  }
+  
 
  }
 
@@ -46,24 +87,13 @@ body {
   .container {
     max-width: 640px;
   }
-  #fish-bowl-img {
-    width: 50%;
-  }
+  
+  
    nav {
     float: left; 
   }
 }
 
-<<<<<<< HEAD
- @media screen and (max-width: 320px) {
-  .container {
-    max-width: 320px;
-  }
-   nav {
-    float: left; 
-  }
-} 
-=======
 @media screen and (max-width: 320px) {
   .container {
     max-width: 320px;
@@ -72,5 +102,4 @@ body {
   nav {
     float: left; 
   }
-}
->>>>>>> 370eef6f091b33f59d74da03333ba11136d8cb7a
+} */
