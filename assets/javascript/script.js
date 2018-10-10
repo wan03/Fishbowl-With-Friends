@@ -191,6 +191,14 @@ $(document).ready(function () {
     getGamePageDiv.style.display = "none";
     getResultsDiv.style.display = "none";
     getInputInfoDiv.style.display = "none";
+    currentTeam = 1;
+    currentWord = -1;
+    time = 30
+    correctT1 = 0,
+    correctT2 = 0,
+    correctT3 = 0,
+    correctT4 = 0,
+    rounds = 3
   }
 
   // ! btnHome
