@@ -1,6 +1,6 @@
 # Fishbowl With Friends
 
-Fishbowl With Friends is deployed at https://wan03.github.io/project-1/
+Fishbowl With Friends is deployed at https://wan03.github.io/Fishbowl-With-Friends/
 
 ## Description
 
