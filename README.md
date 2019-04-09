@@ -10,7 +10,7 @@ This is a web application that helps set up the classic fishbowl game so that th
 
 ![Initial Design](assets/images/initial-sketch.jpg)
 
-## Team Memebers and Roles
+## Team Members and Roles
 
 Jonatan Martinez (lead) - Frontend/JS/Code-Review
 Jeffrey McIntosh - Frontend
